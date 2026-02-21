@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/jesuisgregoire/minecraft_copy/testing_cpp_shits/main'
+relocations:     []
+...
