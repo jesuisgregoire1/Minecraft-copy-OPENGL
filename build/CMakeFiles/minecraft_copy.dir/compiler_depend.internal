@@ -4576,6 +4576,9 @@ CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o
  /Users/jesuisgregoire/minecraft_copy/include/glm/vector_relational.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Window/window.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp
+ /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp
+ /Users/jesuisgregoire/minecraft_copy/src/Shaders/shaders.hpp
+ /Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Shaders/shaders.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/cube.hpp
 
@@ -9337,13 +9340,14 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o
  /Users/jesuisgregoire/minecraft_copy/include/glm/vector_relational.hpp
  /Users/jesuisgregoire/minecraft_copy/include/stb_lib/stb_image.h
  /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp
- /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp
- /Users/jesuisgregoire/minecraft_copy/src/Shaders/shaders.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp
  /Users/jesuisgregoire/minecraft_copy/src/InputHandler/input_handler.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Window/window.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp
+ /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp
+ /Users/jesuisgregoire/minecraft_copy/src/Shaders/shaders.hpp
+ /Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Shaders/shaders.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/cube.hpp
  /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp

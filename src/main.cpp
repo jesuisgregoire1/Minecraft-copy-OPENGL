@@ -33,7 +33,7 @@ int main(){
     window.setCurrentContext();
     loadingGlad();
     //config
-    glfwSetInputMode(window.getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    // glfwSetInputMode(window.getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     //Callbacks
     glfwSetFramebufferSizeCallback(window.getWindow(), framebuffer_size_callback);
     
@@ -50,6 +50,7 @@ int main(){
     texture.GenerateTexture("/Users/jesuisgregoire/minecraft_copy/textures.png");
     //Shader
     ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/shader.fs");
+    ShaderNamespace::Shader d_coordSystemShader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/cs_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/cs_shader.fs");
     //DEBUG 
     CoordSystem::CoordSystem coordSystem = CoordSystem::CoordSystem();
     //Objects
@@ -63,23 +64,27 @@ int main(){
     while(!window.checkWindow()){
         Utils::getDeltatime(&dt);
         closeWindowWithESCButton(window.getWindow());
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        shader.use();
+        
         float red[] = {1.0f, 0.0f, 0.0f};
         float blue[] = {0.0f, 0.0f, 1.0f};
         // change_color(red, shader);
         // rotate_object(shader, camera);
         inputHandler.ProcessInput(window.getWindow(), camera, dt.deltaTime);
+        shader.use();
         texture.BindTexture();
-        coordSystem.Rotate(camera,shader);
-        coordSystem.SetupColors(shader);
+        
+        // coordSystem.SetupColors(d_coordSystemShader);
+        
+        
+        cube.Rotate(camera, shader);
+        cube.Draw();
+        cube.SetCoordSystem(camera,d_coordSystemShader);
         coordSystem.Draw();
-        // cube.Rotate(camera, shader);
-        // cube.Draw();
-        // quad.Rotate(camera, shader);
-        // quad.Draw();
-        // coordSystem.Draw();
+        shader.use();
+        quad.Rotate(camera, shader);
+        quad.Draw();
         // change_color(blue, shader);
         // texture.BindTexture();
         // static_draw(shader);

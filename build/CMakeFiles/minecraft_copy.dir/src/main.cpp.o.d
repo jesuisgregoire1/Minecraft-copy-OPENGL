@@ -1132,6 +1132,9 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Camera/camera.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Camera/../Window/window.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Shaders/shaders.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/CoordSystem.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/../Camera/camera.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/../Shaders/shaders.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/quad.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/../../Camera/camera.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/../../Shaders/shaders.hpp \
@@ -1140,6 +1143,4 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
   /Users/jesuisgregoire/minecraft_copy/src/InputHandler/input_handler.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/InputHandler/../Camera/camera.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Debug/../Camera/camera.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Debug/../Shaders/shaders.hpp
+  /Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.hpp

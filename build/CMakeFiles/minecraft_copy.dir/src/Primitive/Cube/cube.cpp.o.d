@@ -1127,4 +1127,7 @@ CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/CoordSystem.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/../Camera/camera.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/../Shaders/shaders.hpp

@@ -6,9 +6,19 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "../../Camera/camera.hpp"
 #include "../../Shaders/shaders.hpp"
+#include "../../Debug/CoordSystem.hpp"
+
+namespace PointNamespace{
+    struct Point{
+        float x=0.0f,y=1.0f,z=0.0f;
+    };
+};
+
 namespace CubeNamespace{
     class Cube{
         private:
+            CoordSystem::CoordSystem *coordSystem;
+            PointNamespace::Point* point;
             unsigned int VBO[2], VAO, EBO;
             glm::mat4 model = glm::mat4(1.0f);
             glm::mat4 view = glm::mat4(1.0f);
@@ -74,6 +84,8 @@ namespace CubeNamespace{
             void CreatingTextures();
             void Draw();
             void Rotate(CameraNamespace::Camera, ShaderNamespace::Shader);
+            void SetCoordSystem(CameraNamespace::Camera, ShaderNamespace::Shader shader);
     };
+
 }
 #endif
