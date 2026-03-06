@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o.d"
   "CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o"
   "CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o.d"
+  "CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o"
+  "CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o.d"
   "CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o"
   "CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o.d"
   "CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o"

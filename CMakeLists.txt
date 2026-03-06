@@ -25,6 +25,7 @@ add_executable(${PROJECT_NAME}
     src/Camera/camera.cpp
     src/InputHandler/input_handler.cpp
     src/Debug/CoordSystem.cpp
+    src/Debug/WorldCoordSystem.cpp
     src/stb_lib.cpp
     external_ref/glad.c
 )

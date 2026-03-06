@@ -14,6 +14,7 @@
 #include "InputHandler/input_handler.hpp"
 #include "Camera/camera.hpp"
 #include "Debug/CoordSystem.hpp"
+#include "Debug/WorldCoordSystem.hpp"
 
 //#include "stb_image.h"
 using namespace WindowNamespace;
@@ -33,7 +34,7 @@ int main(){
     window.setCurrentContext();
     loadingGlad();
     //config
-    // glfwSetInputMode(window.getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetInputMode(window.getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     //Callbacks
     glfwSetFramebufferSizeCallback(window.getWindow(), framebuffer_size_callback);
     
@@ -53,12 +54,19 @@ int main(){
     ShaderNamespace::Shader d_coordSystemShader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/cs_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/cs_shader.fs");
     //DEBUG 
     CoordSystem::CoordSystem coordSystem = CoordSystem::CoordSystem();
+    WorldCoordSystem::WorldCoordSystem worldCoordinateSystem = WorldCoordSystem::WorldCoordSystem();    
     //Objects
     TriangleNamespace::Triangle triangle = TriangleNamespace::Triangle();
-    CubeNamespace::Cube cube = CubeNamespace::Cube();
+    CubeNamespace::Cube* cubes = new CubeNamespace::Cube[2];
+    
+    cubes[0] = CubeNamespace::Cube(368.0f, 80.0f, 96.0f, 112.0f);
+    cubes[1] = CubeNamespace::Cube(368.0f, 80.0f, 48.0f, 64.0f);
+    
+    
     QuadNamespace::Quad quad = QuadNamespace::Quad();
     triangle.CreateTriangle();
-    cube.CreateCube();
+    cubes[0].CreateCube();
+    cubes[1].CreateCube();
     
     glEnable(GL_DEPTH_TEST); 
     while(!window.checkWindow()){
@@ -73,15 +81,30 @@ int main(){
         // rotate_object(shader, camera);
         inputHandler.ProcessInput(window.getWindow(), camera, dt.deltaTime);
         shader.use();
-        texture.BindTexture();
-        
+        texture.BindTexture();     
         // coordSystem.SetupColors(d_coordSystemShader);
-        
-        
-        cube.Rotate(camera, shader);
-        cube.Draw();
-        cube.SetCoordSystem(camera,d_coordSystemShader);
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        cubes[1].SetPosition(0.0f, 1.0f, 0.0f);
+        cubes[1].SetRotation(1*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
+        cubes[1].SetMVP(camera);
+        cubes[1].MVP(camera, shader);
+        cubes[1].Draw();
+        cubes[1].SetCoordSystem(camera,d_coordSystemShader);
         coordSystem.Draw();
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        shader.use();
+        cubes[0].SetPosition(-5.0f, 1.0f, 0.0f);
+        cubes[0].SetRotation(50*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
+        cubes[0].SetMVP(camera);
+        cubes[0].MVP(camera, shader);
+        cubes[0].Draw();
+        cubes[0].SetCoordSystem(camera,d_coordSystemShader);
+        coordSystem.Draw();
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        // WORLD COORDINATE SYSTEM
+        worldCoordinateSystem.SetWorldCoordSystem(camera, d_coordSystemShader);
+        coordSystem.Draw();
+        ////////////////////////////////////////////////////////////////////////////////////////////////
         shader.use();
         quad.Rotate(camera, shader);
         quad.Draw();
@@ -93,6 +116,9 @@ int main(){
         window.pollEvents();
     }
     terminate();
+    
+    // freeMemory(cubes);
+    delete[] cubes;
 }
 
 void change_color(float color[], ShaderNamespace::Shader shader){

@@ -16,5 +16,13 @@ namespace Utils{
     void framebuffer_size_callback(GLFWwindow* window, int width, int height);
     void loadingGlad();
     void getDeltatime(DeltaTime*);
+    // template <typename T>
+    // void freeMemory(T type){
+    //     std :: cout << "DELETED " << sizeof(type)<< std::endl;
+    //     std :: cout << &type[0] << " " << &type[1] << std :: endl;
+    //     delete[] type;
+    //     type = nullptr;
+    //     std :: cout << &type[0] << " " << &type[1] << std :: endl;
+    // }
 }
 #endif

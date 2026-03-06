@@ -2,7 +2,7 @@
 
 void CubeNamespace::Cube::CreateCube(){
     //Used to bind the Vertex Array Object
-    point = new PointNamespace::Point();
+    // point = new PointNamespace::Point();
     coordSystem = new CoordSystem::CoordSystem();
     CreatingTextures();
     glGenVertexArrays(1, &VAO);
@@ -39,56 +39,101 @@ void CubeNamespace::Cube::Draw(){
 
 void CubeNamespace::Cube::CreatingTextures(){
     uint8_t counter = 0;
-    uint16_t posY = 368;
-    uint16_t posX_first = 80;
-    uint16_t posX_second = 96;
-    uint16_t posX_third = 112;
-    uint16_t posX_per_face[6] = {
-        posX_third,  posX_third,
-        posX_third, posX_third,    
-        posX_second,  posX_first
-    };
+    std :: cout << "posX_first = " << posX_first << std::endl;
+    std :: cout << "posX_second = " << posX_second << std::endl;
+    std :: cout << "posX_third = " << posX_third << std::endl;
+    std :: cout << "posY = " << posY << std::endl;
+    // 368.0f, 80.0f, 96.0f, 112.0f
+    // 368.0f, 80.0f, 64.0f, 48.0f
+    if(initialized){
+        uint16_t posX_per_face[6] = {
+            posX_third, posX_third,
+            posX_third, posX_third,    
+            posX_first, posX_second
+        };
 
-    for (int f = 0; f < 6; f++) {
-        int i = f * 8; // 8 floats per face (4 vertices × 2)
-        uint16_t posX = posX_per_face[f];
+        for (int f = 0; f < 6; f++) {
+            int i = f * 8; // 8 floats per face (4 vertices × 2)
+            uint16_t posX = posX_per_face[f];
 
-        textures[i + 0] = ((posX) + 16)/ widthTexture; // top right
-        textures[i + 1] = ((posY) - 16)/ heightTexture;
+            textures[i + 0] = ((posX) + 16)/ widthTexture; // top right
+            textures[i + 1] = ((posY) - 16)/ heightTexture;
 
-        textures[i + 2] = ((posX) + 16)/ widthTexture; // bottom right
-        textures[i + 3] = posY / heightTexture;
+            textures[i + 2] = ((posX) + 16)/ widthTexture; // bottom right
+            textures[i + 3] = posY / heightTexture;
 
-        textures[i + 4] = posX / widthTexture;        // bottom left
-        textures[i + 5] = posY / heightTexture;
+            textures[i + 4] = posX / widthTexture;        // bottom left
+            textures[i + 5] = posY / heightTexture;
 
-        textures[i + 6] = posX / widthTexture;        // top left
-        textures[i + 7] = ((posY) -16)/ heightTexture;
+            textures[i + 6] = posX / widthTexture;        // top left
+            textures[i + 7] = ((posY) -16)/ heightTexture;
+        }
+    }
+    else{
+        std :: cout << "The cube is not initialized with the texture Data" << std :: endl;
     }
 }
 
-void CubeNamespace::Cube::Rotate(CameraNamespace::Camera camera, 
-                                ShaderNamespace::Shader shader){
-    model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(point->x, point->y, point->z));
-    model = glm::rotate(model, glm::radians(50*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+void CubeNamespace::Cube::SetModel(){
 
-    glm::mat4 view = camera.ModifyViewMatrix();
+}
+
+
+void CubeNamespace::Cube::SetPosition(float x, float y, float z){
+    point.x = x;
+    point.y = y;
+    point.z = z;
+}
+
+void CubeNamespace::Cube::SetRotation(float angle, float x_axis, float y_axis, float z_axis){
+    rotation.angle = angle;
+    rotation.axis.x = x_axis;
+    rotation.axis.y = y_axis;
+    rotation.axis.z = z_axis;
+}
+
+void CubeNamespace::Cube::SetMVP(CameraNamespace::Camera camera){
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //TRANSLATION ROTATION AND SCALING
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(point.x, point.y, point.z));
+    model = glm::rotate(model, glm::radians(rotation.angle), glm::vec3(rotation.axis.x, rotation.axis.y, rotation.axis.z));
+    // model = glm::rotate(model, glm::radians(rotation.angle), 
+    //                 glm::vec3(rotation.axis.x, rotation.axis.y, rotation.axis.z));
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //VIEW
+    view = camera.ModifyViewMatrix();
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //PROJECTION
     projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+    ////////////////////////////////////////////////////////////////////////////////////////
+}
+
+void CubeNamespace::Cube::MVP(CameraNamespace::Camera camera, ShaderNamespace::Shader shader){
+    shader.use();
     int modelLoc = glGetUniformLocation(shader.ID, "model");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
     int viewLoc = glGetUniformLocation(shader.ID, "view");
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+
     int projectionLoc = glGetUniformLocation(shader.ID, "projection");
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 }
 
-void CubeNamespace::Cube::SetCoordSystem(CameraNamespace::Camera camera,
-                                        ShaderNamespace::Shader shader){
+void CubeNamespace::Cube::SetCoordSystem(CameraNamespace::Camera camera, ShaderNamespace::Shader shader){
     coordSystem->SetModel(glm::vec3(1.0f,1.0f,1.0f),
-                    glm::vec3(point->x, point->y, point->z), 
-                    glm::radians(50*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+                    glm::vec3(point.x, point.y, point.z), 
+                    glm::radians(rotation.angle), glm::vec3(rotation.axis.x, rotation.axis.y, rotation.axis.z));
     coordSystem->SetView(camera);
     coordSystem->SetProjection();
     coordSystem->SetMVP(shader);
+}
+
+CubeNamespace::Cube::Cube(float posY, float posX_first, float posX_second, float posX_third){
+    this->posY = posY;
+    this->posX_first = posX_first;
+    this->posX_second = posX_second;
+    this->posX_third = posX_third;
+    initialized=true;
 }

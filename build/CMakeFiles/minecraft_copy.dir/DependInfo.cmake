@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/jesuisgregoire/minecraft_copy/external_ref/glad.c" "CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o" "gcc" "CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o.d"
   "/Users/jesuisgregoire/minecraft_copy/src/Camera/camera.cpp" "CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o" "gcc" "CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o.d"
   "/Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.cpp" "CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o" "gcc" "CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o.d"
+  "/Users/jesuisgregoire/minecraft_copy/src/Debug/WorldCoordSystem.cpp" "CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o" "gcc" "CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o.d"
   "/Users/jesuisgregoire/minecraft_copy/src/InputHandler/input_handler.cpp" "CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o" "gcc" "CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o.d"
   "/Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/cube.cpp" "CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o" "gcc" "CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o.d"
   "/Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/quad.cpp" "CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o" "gcc" "CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o.d"

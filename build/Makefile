@@ -201,6 +201,30 @@ src/Debug/CoordSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.s
 .PHONY : src/Debug/CoordSystem.cpp.s
 
+src/Debug/WorldCoordSystem.o: src/Debug/WorldCoordSystem.cpp.o
+.PHONY : src/Debug/WorldCoordSystem.o
+
+# target to build an object file
+src/Debug/WorldCoordSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o
+.PHONY : src/Debug/WorldCoordSystem.cpp.o
+
+src/Debug/WorldCoordSystem.i: src/Debug/WorldCoordSystem.cpp.i
+.PHONY : src/Debug/WorldCoordSystem.i
+
+# target to preprocess a source file
+src/Debug/WorldCoordSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.i
+.PHONY : src/Debug/WorldCoordSystem.cpp.i
+
+src/Debug/WorldCoordSystem.s: src/Debug/WorldCoordSystem.cpp.s
+.PHONY : src/Debug/WorldCoordSystem.s
+
+# target to generate assembly for a file
+src/Debug/WorldCoordSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.s
+.PHONY : src/Debug/WorldCoordSystem.cpp.s
+
 src/InputHandler/input_handler.o: src/InputHandler/input_handler.cpp.o
 .PHONY : src/InputHandler/input_handler.o
 
@@ -459,6 +483,9 @@ help:
 	@echo "... src/Debug/CoordSystem.o"
 	@echo "... src/Debug/CoordSystem.i"
 	@echo "... src/Debug/CoordSystem.s"
+	@echo "... src/Debug/WorldCoordSystem.o"
+	@echo "... src/Debug/WorldCoordSystem.i"
+	@echo "... src/Debug/WorldCoordSystem.s"
 	@echo "... src/InputHandler/input_handler.o"
 	@echo "... src/InputHandler/input_handler.i"
 	@echo "... src/InputHandler/input_handler.s"
