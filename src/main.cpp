@@ -20,11 +20,12 @@
 using namespace WindowNamespace;
 using namespace Utils;
 
-void rotate_object(ShaderNamespace::Shader, CameraNamespace::Camera);
-void transform_object(ShaderNamespace::Shader);
-void static_draw(ShaderNamespace::Shader);
-void change_color(float[], ShaderNamespace::Shader);
-
+// void rotate_object(ShaderNamespace::Shader, CameraNamespace::Camera);
+// void transform_object(ShaderNamespace::Shader);
+// void static_draw(ShaderNamespace::Shader);
+// void change_color(float[], ShaderNamespace::Shader);
+bool check_intersection(CubeNamespace::Cube, CubeNamespace::Cube);
+float counter = 0.0f;
 int main(){
     
     init();
@@ -84,25 +85,28 @@ int main(){
         texture.BindTexture();     
         // coordSystem.SetupColors(d_coordSystemShader);
         ////////////////////////////////////////////////////////////////////////////////////////////////
-        // cubes[1].SetPosition(0.0f, 1.0f, 0.0f);
-        // cubes[1].SetRotation(1*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
-        // cubes[1].SetMVP(camera);
-        // cubes[1].MVP(camera, shader);
-        // cubes[1].Draw();
-        // cubes[1].SetCoordSystem(camera,d_coordSystemShader);
-        // coordSystem.Draw();
+        cubes[1].SetPosition(counter, 1.0f, 0.0f);
+        counter -= dt.deltaTime * 0.5f;
+        cubes[1].SetRotation(0*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
+        cubes[1].SetMVP(camera);
+        cubes[1].MVP(camera, shader);
+        cubes[1].Draw();
+        cubes[1].SetCoordSystem(camera,d_coordSystemShader);
+        coordSystem.Draw();
         d_coordSystemShader.use();
-        cubes[1].boundingBox.SetMVP(camera);
         cubes[1].boundingBox.MVP(camera, d_coordSystemShader);
         cubes[1].boundingBox.Draw();
         ////////////////////////////////////////////////////////////////////////////////////////////////
         shader.use();
+
         cubes[0].SetPosition(-5.0f, 1.0f, 0.0f);
-        cubes[0].SetRotation(50*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
+        cubes[0].SetRotation(0*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
         cubes[0].SetMVP(camera);
         cubes[0].MVP(camera, shader);
         cubes[0].Draw();
         cubes[0].SetCoordSystem(camera,d_coordSystemShader);
+        cubes[0].boundingBox.MVP(camera, d_coordSystemShader);
+        cubes[0].boundingBox.Draw();
         coordSystem.Draw();
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // WORLD COORDINATE SYSTEM
@@ -112,6 +116,7 @@ int main(){
         shader.use();
         quad.Rotate(camera, shader);
         quad.Draw();
+        check_intersection(cubes[0], cubes[1]);
         // change_color(blue, shader);
         // texture.BindTexture();
         // static_draw(shader);
@@ -124,49 +129,77 @@ int main(){
     // freeMemory(cubes);
     delete[] cubes;
 }
-
-void change_color(float color[], ShaderNamespace::Shader shader){
-    int colorLoc = glGetUniformLocation(shader.ID, "color_in");
-    glUniform3f(colorLoc, color[0], color[1], color[2]);
+bool check_intersection(CubeNamespace::Cube cube1, CubeNamespace::Cube cube2){
+    std :: cout << "x1=" << cube1.boundingBox.max.x << "||" << "y1=" << cube1.boundingBox.max.y << "||" << "z1=" << cube1.boundingBox.max.z << std :: endl;
+    std :: cout << "x2=" << cube2.boundingBox.max.x << "||" << "y2=" << cube2.boundingBox.max.y << "||" << "z2=" << cube2.boundingBox.max.z << std :: endl;
+    if((cube1.boundingBox.max.x >= cube2.boundingBox.min.x && cube1.boundingBox.min.x <= cube2.boundingBox.max.x) &&
+    (cube1.boundingBox.max.y >= cube2.boundingBox.min.y && cube1.boundingBox.min.y <= cube2.boundingBox.max.y)   &&
+    (cube1.boundingBox.max.z >= cube2.boundingBox.min.z && cube1.boundingBox.min.z <= cube2.boundingBox.max.z))
+        {
+            std :: cout << "YES" << std :: endl;
+            return true;
+        }
+        // std :: cout << "NO" << std :: endl;
+        return false;
+        
 }
 
-void transform_object(ShaderNamespace::Shader shader){
-    glm::mat4 transform = glm::mat4(1.0f);
-    // transform = glm::translate(transform, glm::vec3(0.5f, 0.0f, 0.0f));
-    // transform = glm::scale(transform, glm::vec3(1.0f, 1.0f, 0.0f));
-    int transformaLoc = glGetUniformLocation(shader.ID, "transform");
-    glUniformMatrix4fv(transformaLoc, 1, GL_FALSE, glm::value_ptr(transform));   
-}
 
-void rotate_object(ShaderNamespace::Shader shader, CameraNamespace::Camera camera){
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::rotate(model, glm::radians(50*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
-    // model = glm::rotate(model, glm::radians(10*(float)glfwGetTime()), glm::vec3(1.0f, 1.0f, 0.0f));
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//DONT NEED THIS 
+// void change_color(float color[], ShaderNamespace::Shader shader){
+//     int colorLoc = glGetUniformLocation(shader.ID, "color_in");
+//     glUniform3f(colorLoc, color[0], color[1], color[2]);
+// }
+
+// void transform_object(ShaderNamespace::Shader shader){
+//     glm::mat4 transform = glm::mat4(1.0f);
+//     // transform = glm::translate(transform, glm::vec3(0.5f, 0.0f, 0.0f));
+//     // transform = glm::scale(transform, glm::vec3(1.0f, 1.0f, 0.0f));
+//     int transformaLoc = glGetUniformLocation(shader.ID, "transform");
+//     glUniformMatrix4fv(transformaLoc, 1, GL_FALSE, glm::value_ptr(transform));   
+// }
+
+// void rotate_object(ShaderNamespace::Shader shader, CameraNamespace::Camera camera){
+//     glm::mat4 model = glm::mat4(1.0f);
+//     model = glm::rotate(model, glm::radians(50*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+//     // model = glm::rotate(model, glm::radians(10*(float)glfwGetTime()), glm::vec3(1.0f, 1.0f, 0.0f));
     
-    glm::mat4 view = camera.ModifyViewMatrix();
-    glm::mat4 projection;
-    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+//     glm::mat4 view = camera.ModifyViewMatrix();
+//     glm::mat4 projection;
+//     projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
-    int modelLoc = glGetUniformLocation(shader.ID, "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    int viewLoc = glGetUniformLocation(shader.ID, "view");
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-    int projectionLoc = glGetUniformLocation(shader.ID, "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-}
+//     int modelLoc = glGetUniformLocation(shader.ID, "model");
+//     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+//     int viewLoc = glGetUniformLocation(shader.ID, "view");
+//     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+//     int projectionLoc = glGetUniformLocation(shader.ID, "projection");
+//     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+// }
 
-void static_draw(ShaderNamespace::Shader shader){
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-    glm::mat4 view = glm::mat4(1.0f);
-    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-    glm::mat4 projection;
-    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+// void static_draw(ShaderNamespace::Shader shader){
+//     glm::mat4 model = glm::mat4(1.0f);
+//     model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+//     glm::mat4 view = glm::mat4(1.0f);
+//     view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+//     glm::mat4 projection;
+//     projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
-    int modelLoc = glGetUniformLocation(shader.ID, "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    int viewLoc = glGetUniformLocation(shader.ID, "view");
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-    int projectionLoc = glGetUniformLocation(shader.ID, "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-}
+//     int modelLoc = glGetUniformLocation(shader.ID, "model");
+//     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+//     int viewLoc = glGetUniformLocation(shader.ID, "view");
+//     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+//     int projectionLoc = glGetUniformLocation(shader.ID, "projection");
+//     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+// }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

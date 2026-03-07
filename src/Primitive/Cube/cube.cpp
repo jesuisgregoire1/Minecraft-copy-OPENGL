@@ -84,6 +84,11 @@ void CubeNamespace::Cube::SetPosition(float x, float y, float z){
     point.x = x;
     point.y = y;
     point.z = z;
+    // std :: cout << "x1=" << point.x << "||" << "y1=" << point.y << "||" << "z1=" << point.z << std :: endl;
+    boundingBox.max = glm::vec3(0.0f);
+    boundingBox.min = glm::vec3(0.0f);
+    boundingBox.max = glm::vec3(0.5f, 0.5f, 0.5f)+ glm::vec3(point.x, point.y, point.z);
+    boundingBox.min = glm::vec3(-0.5f,-0.5f,-0.5f)+ glm::vec3(point.x, point.y, point.z);
 }
 
 void CubeNamespace::Cube::SetRotation(float angle, float x_axis, float y_axis, float z_axis){
@@ -108,6 +113,8 @@ void CubeNamespace::Cube::SetMVP(CameraNamespace::Camera camera){
     //PROJECTION
     projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
     ////////////////////////////////////////////////////////////////////////////////////////
+    //Bounding BOX
+    boundingBox.SetMVP(camera, glm::vec3(point.x, point.y, point.z), rotation.angle, rotation.axis);
 }
 
 void CubeNamespace::Cube::MVP(CameraNamespace::Camera camera, ShaderNamespace::Shader shader){
@@ -193,13 +200,16 @@ void BoundingBox::BoundingBox::Draw(){
     glBindVertexArray(0);
 }
 
-void BoundingBox::BoundingBox::SetMVP(CameraNamespace::Camera camera){
+void BoundingBox::BoundingBox::SetMVP(CameraNamespace::Camera camera,
+                                    glm::vec3 position,
+                                    float angle, glm::vec3 rotation, 
+                                    glm::vec3 scale){
     ////////////////////////////////////////////////////////////////////////////////////////
     //TRANSLATION ROTATION AND SCALING
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(0.0f));
-    model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f));
-    model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+    model = glm::translate(model, glm::vec3(position.x, position.y, position.z));
+    model = glm::rotate(model, glm::radians(angle), glm::vec3(rotation.x, rotation.y, rotation.z));
+    model = glm::scale(model, glm::vec3(scale.x, scale.y, scale.z));
 
     ////////////////////////////////////////////////////////////////////////////////////////
     //VIEW

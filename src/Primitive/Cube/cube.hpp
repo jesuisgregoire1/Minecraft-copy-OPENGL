@@ -19,8 +19,8 @@ namespace Transformation{
 };
 namespace BoundingBox{
     struct BoundingBox{
-        glm::vec3 max       = glm::vec3(1.0f);
-        glm::vec3 min       = glm::vec3(0.0f);
+        glm::vec3 max       = glm::vec3(0.5f, 0.5f, 0.5f);
+        glm::vec3 min       = glm::vec3(-0.5f,-0.5f,-0.5f);
         glm::vec3 vertices[8], colors[8];
         unsigned int VAO[1], VBO[2], EBO[1];
         unsigned int indices[24] = {0,1, 1,2, 2,3, 3,0,
@@ -31,7 +31,10 @@ namespace BoundingBox{
         void Draw();
         void CreateBoundingBoxPoints();
         void CreateBoundingBoxColor();
-        void SetMVP(CameraNamespace::Camera camera);
+        void SetMVP(CameraNamespace::Camera camera, 
+                    glm::vec3 position,
+                    float angle, glm::vec3 rotation, 
+                    glm::vec3 scale = glm::vec3(1.01f, 1.01f, 1.01f));
         void MVP(CameraNamespace::Camera camera, ShaderNamespace::Shader shader);
         BoundingBox();
 
@@ -106,7 +109,7 @@ namespace CubeNamespace{
 };
 
         public:
-            BoundingBox::BoundingBox boundingBox = BoundingBox::BoundingBox(); 
+            BoundingBox::BoundingBox boundingBox; 
             void CreateCube();
             void CreatingTextures();
             void Draw();
