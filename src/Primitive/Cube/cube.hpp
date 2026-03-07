@@ -8,7 +8,7 @@
 #include "../../Shaders/shaders.hpp"
 #include "../../Debug/CoordSystem.hpp"
 
-namespace PointNamespace{
+namespace Transformation{
     struct Point{
         float x=0.0f, y=1.0f, z=0.0f;
     };
@@ -17,13 +17,32 @@ namespace PointNamespace{
         float angle = 0.0f;
     };
 };
+namespace BoundingBox{
+    struct BoundingBox{
+        glm::vec3 max       = glm::vec3(1.0f);
+        glm::vec3 min       = glm::vec3(0.0f);
+        glm::vec3 vertices[8], colors[8];
+        unsigned int VAO[1], VBO[2], EBO[1];
+        unsigned int indices[24] = {0,1, 1,2, 2,3, 3,0,
+            4,5, 5,6, 6,7, 7,4,
+            0,4, 1,5, 2,6, 3,7
+        };
+        glm::mat4 model, view, projection;
+        void Draw();
+        void CreateBoundingBoxPoints();
+        void CreateBoundingBoxColor();
+        void SetMVP(CameraNamespace::Camera camera);
+        void MVP(CameraNamespace::Camera camera, ShaderNamespace::Shader shader);
+        BoundingBox();
 
+    };
+}
 namespace CubeNamespace{
     class Cube{
         private:
-            CoordSystem::CoordSystem* coordSystem;
-            PointNamespace::Point point;
-            PointNamespace::Rotation rotation;
+            CoordSystem::CoordSystem coordSystem = CoordSystem::CoordSystem();
+            Transformation::Point point = Transformation::Point();
+            Transformation::Rotation rotation = Transformation::Rotation();
             unsigned int VBO[2], VAO, EBO;
             glm::mat4 model = glm::mat4(1.0f);
             glm::mat4 view = glm::mat4(1.0f);
@@ -86,7 +105,8 @@ namespace CubeNamespace{
     20,21,22, 22,23,20
 };
 
-        public: 
+        public:
+            BoundingBox::BoundingBox boundingBox = BoundingBox::BoundingBox(); 
             void CreateCube();
             void CreatingTextures();
             void Draw();
@@ -95,7 +115,7 @@ namespace CubeNamespace{
             void SetMVP(CameraNamespace::Camera);
             void SetRotation(float angle, float x_axis, float y_axis, float z_axis);
             void SetPosition(float x, float y, float z);
-            void SetCoordSystem(CameraNamespace::Camera, ShaderNamespace::Shader shader);
+            void SetCoordSystem(CameraNamespace::Camera, ShaderNamespace::Shader shader);            
             Cube(float posY, float posX_first, float posX_second, float posX_third);
             Cube(){}
     };

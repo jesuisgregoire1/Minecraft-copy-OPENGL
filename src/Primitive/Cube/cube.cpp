@@ -1,9 +1,9 @@
 #include "cube.hpp"
 
 void CubeNamespace::Cube::CreateCube(){
-    //Used to bind the Vertex Array Object
+    //Used to bind the Vertex Array Object                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
     // point = new PointNamespace::Point();
-    coordSystem = new CoordSystem::CoordSystem();
+    // coordSystem = new CoordSystem::CoordSystem();
     CreatingTextures();
     glGenVertexArrays(1, &VAO);
     glGenBuffers(2, VBO);
@@ -27,12 +27,14 @@ void CubeNamespace::Cube::CreateCube(){
     //Used to bind the Element Buffer object buffer
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+
 }
 
 void CubeNamespace::Cube::Draw(){
     glBindVertexArray(VAO);
     //glDrawArrays(GL_TRIANGLES, 0, 36);
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }
@@ -78,7 +80,6 @@ void CubeNamespace::Cube::SetModel(){
 
 }
 
-
 void CubeNamespace::Cube::SetPosition(float x, float y, float z){
     point.x = x;
     point.y = y;
@@ -122,12 +123,12 @@ void CubeNamespace::Cube::MVP(CameraNamespace::Camera camera, ShaderNamespace::S
 }
 
 void CubeNamespace::Cube::SetCoordSystem(CameraNamespace::Camera camera, ShaderNamespace::Shader shader){
-    coordSystem->SetModel(glm::vec3(1.0f,1.0f,1.0f),
-                    glm::vec3(point.x, point.y, point.z), 
-                    glm::radians(rotation.angle), glm::vec3(rotation.axis.x, rotation.axis.y, rotation.axis.z));
-    coordSystem->SetView(camera);
-    coordSystem->SetProjection();
-    coordSystem->SetMVP(shader);
+    coordSystem.SetModel(glm::vec3(1.0f,1.0f,1.0f),
+                   glm::vec3(point.x, point.y, point.z), 
+                   glm::radians(rotation.angle), glm::vec3(rotation.axis.x, rotation.axis.y, rotation.axis.z));
+    coordSystem.SetView(camera);
+    coordSystem.SetProjection();
+    coordSystem.SetMVP(shader);
 }
 
 CubeNamespace::Cube::Cube(float posY, float posX_first, float posX_second, float posX_third){
@@ -136,4 +137,86 @@ CubeNamespace::Cube::Cube(float posY, float posX_first, float posX_second, float
     this->posX_second = posX_second;
     this->posX_third = posX_third;
     initialized=true;
+}
+
+void BoundingBox::BoundingBox::CreateBoundingBoxPoints(){
+    //Here we want to create the bounding box for a cube
+    vertices[0] = max; // top-left-front
+    vertices[1] = glm::vec3(min.x, max.y, max.z); // top-right-front
+    vertices[2] = glm::vec3(min.x, min.y, max.z); // bottom-right-front
+    vertices[3] = glm::vec3(max.x, min.y, max.z); // bottom-left-front
+    vertices[4] = glm::vec3(max.x, max.y, min.z); // top-left-back
+    vertices[5] = glm::vec3(min.x, max.y, min.z); // top-right-back
+    vertices[6] = min;                            // bottom-right-back
+    vertices[7] = glm::vec3(max.x, min.y, min.z); // bottom-left-back
+}
+
+void BoundingBox::BoundingBox::CreateBoundingBoxColor(){
+    //Here we want to create the bounding box for a cube
+    colors[0] = glm::vec3(1.0f, 0.0f, 0.0f); // top-left-front
+    colors[1] = glm::vec3(1.0f, 0.0f, 0.0f); // top-right-front
+    colors[2] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-right-front
+    colors[3] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-left-front
+    colors[4] = glm::vec3(1.0f, 0.0f, 0.0f); // top-left-back
+    colors[5] = glm::vec3(1.0f, 0.0f, 0.0f); // top-right-back
+    colors[6] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-right-back
+    colors[7] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-left-back
+}
+
+BoundingBox::BoundingBox::BoundingBox(){
+    CreateBoundingBoxPoints();
+    CreateBoundingBoxColor();
+    
+    glGenVertexArrays(1, VAO);
+    glGenBuffers(2, VBO);
+    glGenBuffers(1, EBO);
+    glBindVertexArray(*VAO);
+    ////////////////////////////////////////////////////////////////////////////////////////
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    ////////////////////////////////////////////////////////////////////////////////////////
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), (void*)0);
+    glEnableVertexAttribArray(1);
+    ////////////////////////////////////////////////////////////////////////////////////////
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+}
+
+void BoundingBox::BoundingBox::Draw(){
+    glBindVertexArray(*VAO);
+    glLineWidth(1.5f);
+    glDrawElements(GL_LINES, 24, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+}
+
+void BoundingBox::BoundingBox::SetMVP(CameraNamespace::Camera camera){
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //TRANSLATION ROTATION AND SCALING
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(0.0f));
+    model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f));
+    model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //VIEW
+    view = camera.ModifyViewMatrix();
+    ////////////////////////////////////////////////////////////////////////////////////////
+    //PROJECTION
+    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+    ////////////////////////////////////////////////////////////////////////////////////////
+}
+void BoundingBox::BoundingBox::MVP(CameraNamespace::Camera camera, ShaderNamespace::Shader shader){
+    shader.use();
+    int modelLoc = glGetUniformLocation(shader.ID, "model");
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+    int viewLoc = glGetUniformLocation(shader.ID, "view");
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+
+    int projectionLoc = glGetUniformLocation(shader.ID, "projection");
+    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 }

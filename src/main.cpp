@@ -84,13 +84,17 @@ int main(){
         texture.BindTexture();     
         // coordSystem.SetupColors(d_coordSystemShader);
         ////////////////////////////////////////////////////////////////////////////////////////////////
-        cubes[1].SetPosition(0.0f, 1.0f, 0.0f);
-        cubes[1].SetRotation(1*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
-        cubes[1].SetMVP(camera);
-        cubes[1].MVP(camera, shader);
-        cubes[1].Draw();
-        cubes[1].SetCoordSystem(camera,d_coordSystemShader);
-        coordSystem.Draw();
+        // cubes[1].SetPosition(0.0f, 1.0f, 0.0f);
+        // cubes[1].SetRotation(1*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
+        // cubes[1].SetMVP(camera);
+        // cubes[1].MVP(camera, shader);
+        // cubes[1].Draw();
+        // cubes[1].SetCoordSystem(camera,d_coordSystemShader);
+        // coordSystem.Draw();
+        d_coordSystemShader.use();
+        cubes[1].boundingBox.SetMVP(camera);
+        cubes[1].boundingBox.MVP(camera, d_coordSystemShader);
+        cubes[1].boundingBox.Draw();
         ////////////////////////////////////////////////////////////////////////////////////////////////
         shader.use();
         cubes[0].SetPosition(-5.0f, 1.0f, 0.0f);
