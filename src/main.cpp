@@ -24,8 +24,9 @@ using namespace Utils;
 // void transform_object(ShaderNamespace::Shader);
 // void static_draw(ShaderNamespace::Shader);
 // void change_color(float[], ShaderNamespace::Shader);
-bool check_intersection(CubeNamespace::Cube, CubeNamespace::Cube);
+bool check_intersection(CubeNamespace::Cube&, CubeNamespace::Cube&);
 float counter = 0.0f;
+float speed = 0.5f;
 int main(){
     
     init();
@@ -86,19 +87,18 @@ int main(){
         // coordSystem.SetupColors(d_coordSystemShader);
         ////////////////////////////////////////////////////////////////////////////////////////////////
         cubes[1].SetPosition(counter, 1.0f, 0.0f);
-        counter -= dt.deltaTime * 0.5f;
+        counter -= dt.deltaTime * speed;
         cubes[1].SetRotation(0*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
         cubes[1].SetMVP(camera);
         cubes[1].MVP(camera, shader);
         cubes[1].Draw();
         cubes[1].SetCoordSystem(camera,d_coordSystemShader);
         coordSystem.Draw();
-        d_coordSystemShader.use();
         cubes[1].boundingBox.MVP(camera, d_coordSystemShader);
+        cubes[1].boundingBox.ChangeColor();
         cubes[1].boundingBox.Draw();
         ////////////////////////////////////////////////////////////////////////////////////////////////
         shader.use();
-
         cubes[0].SetPosition(-5.0f, 1.0f, 0.0f);
         cubes[0].SetRotation(0*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
         cubes[0].SetMVP(camera);
@@ -106,6 +106,7 @@ int main(){
         cubes[0].Draw();
         cubes[0].SetCoordSystem(camera,d_coordSystemShader);
         cubes[0].boundingBox.MVP(camera, d_coordSystemShader);
+        cubes[0].boundingBox.ChangeColor();
         cubes[0].boundingBox.Draw();
         coordSystem.Draw();
         ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,6 +118,9 @@ int main(){
         quad.Rotate(camera, shader);
         quad.Draw();
         check_intersection(cubes[0], cubes[1]);
+        
+        std :: cout << "cubes[1].boundingBox=" << cubes[1].boundingBox.isColliding << 
+        " cubes[2].boundingBox=" << cubes[2].boundingBox.isColliding << std :: endl;
         // change_color(blue, shader);
         // texture.BindTexture();
         // static_draw(shader);
@@ -129,16 +133,21 @@ int main(){
     // freeMemory(cubes);
     delete[] cubes;
 }
-bool check_intersection(CubeNamespace::Cube cube1, CubeNamespace::Cube cube2){
-    std :: cout << "x1=" << cube1.boundingBox.max.x << "||" << "y1=" << cube1.boundingBox.max.y << "||" << "z1=" << cube1.boundingBox.max.z << std :: endl;
-    std :: cout << "x2=" << cube2.boundingBox.max.x << "||" << "y2=" << cube2.boundingBox.max.y << "||" << "z2=" << cube2.boundingBox.max.z << std :: endl;
+bool check_intersection(CubeNamespace::Cube &cube1, CubeNamespace::Cube &cube2){
+    // std :: cout << "x1=" << cube1.boundingBox.max.x << "||" << "y1=" << cube1.boundingBox.max.y << "||" << "z1=" << cube1.boundingBox.max.z << std :: endl;
+    // std :: cout << "x2=" << cube2.boundingBox.max.x << "||" << "y2=" << cube2.boundingBox.max.y << "||" << "z2=" << cube2.boundingBox.max.z << std :: endl;
     if((cube1.boundingBox.max.x >= cube2.boundingBox.min.x && cube1.boundingBox.min.x <= cube2.boundingBox.max.x) &&
     (cube1.boundingBox.max.y >= cube2.boundingBox.min.y && cube1.boundingBox.min.y <= cube2.boundingBox.max.y)   &&
     (cube1.boundingBox.max.z >= cube2.boundingBox.min.z && cube1.boundingBox.min.z <= cube2.boundingBox.max.z))
         {
             std :: cout << "YES" << std :: endl;
+            cube1.boundingBox.isColliding = true;
+            cube2.boundingBox.isColliding = true;
+            speed = 0.0f;
             return true;
         }
+        cube1.boundingBox.isColliding = false;
+        cube2.boundingBox.isColliding = false;
         // std :: cout << "NO" << std :: endl;
         return false;
         

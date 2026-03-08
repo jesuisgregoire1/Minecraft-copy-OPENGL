@@ -159,17 +159,36 @@ void BoundingBox::BoundingBox::CreateBoundingBoxPoints(){
 }
 
 void BoundingBox::BoundingBox::CreateBoundingBoxColor(){
-    //Here we want to create the bounding box for a cube
-    colors[0] = glm::vec3(1.0f, 0.0f, 0.0f); // top-left-front
-    colors[1] = glm::vec3(1.0f, 0.0f, 0.0f); // top-right-front
-    colors[2] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-right-front
-    colors[3] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-left-front
-    colors[4] = glm::vec3(1.0f, 0.0f, 0.0f); // top-left-back
-    colors[5] = glm::vec3(1.0f, 0.0f, 0.0f); // top-right-back
-    colors[6] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-right-back
-    colors[7] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-left-back
+    for(uint8_t i=0 ; i<8; ++i){
+        colors[i] = glm::vec3(0.0f, 1.0f, 0.0f);
+    }
+    // //Here we want to create the bounding box for a cube
+    // colors[0] = glm::vec3(1.0f, 0.0f, 0.0f); // top-left-front
+    // colors[1] = glm::vec3(1.0f, 0.0f, 0.0f); // top-right-front
+    // colors[2] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-right-front
+    // colors[3] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-left-front
+    // colors[4] = glm::vec3(1.0f, 0.0f, 0.0f); // top-left-back
+    // colors[5] = glm::vec3(1.0f, 0.0f, 0.0f); // top-right-back
+    // colors[6] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-right-back
+    // colors[7] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-left-back
 }
-
+void BoundingBox::BoundingBox::ChangeColor(){
+    for(uint8_t i=0 ; i<8; ++i){
+        // colors[i] = glm::vec3(0.0f, 1.0f, 0.0f);
+        std :: cout << "colors[i] = " << i << " " << colors[i].x <<" "<< colors[i].y <<" "<< colors[i].z << std :: endl; 
+    }
+    if(!isColliding){
+        for(uint8_t i=0 ; i<8; ++i){
+            colors[i] = glm::vec3(1.0f, 0.0f, 0.0f);
+        }
+    }else{
+        for(uint8_t i=0 ; i<8; ++i){
+            colors[i] = glm::vec3(0.0f, 1.0f, 0.0f);
+        }
+    }
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(colors), colors);
+}
 BoundingBox::BoundingBox::BoundingBox(){
     CreateBoundingBoxPoints();
     CreateBoundingBoxColor();

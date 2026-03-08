@@ -19,15 +19,17 @@ namespace Transformation{
 };
 namespace BoundingBox{
     struct BoundingBox{
+        bool isColliding = false;
         glm::vec3 max       = glm::vec3(0.5f, 0.5f, 0.5f);
         glm::vec3 min       = glm::vec3(-0.5f,-0.5f,-0.5f);
         glm::vec3 vertices[8], colors[8];
+        glm::mat4 model, view, projection;
         unsigned int VAO[1], VBO[2], EBO[1];
-        unsigned int indices[24] = {0,1, 1,2, 2,3, 3,0,
+        unsigned int indices[24] = {
+            0,1, 1,2, 2,3, 3,0,
             4,5, 5,6, 6,7, 7,4,
             0,4, 1,5, 2,6, 3,7
         };
-        glm::mat4 model, view, projection;
         void Draw();
         void CreateBoundingBoxPoints();
         void CreateBoundingBoxColor();
@@ -36,6 +38,7 @@ namespace BoundingBox{
                     float angle, glm::vec3 rotation, 
                     glm::vec3 scale = glm::vec3(1.01f, 1.01f, 1.01f));
         void MVP(CameraNamespace::Camera camera, ShaderNamespace::Shader shader);
+        void ChangeColor();
         BoundingBox();
 
     };
