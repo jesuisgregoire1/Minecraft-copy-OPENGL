@@ -89,6 +89,7 @@ void CubeNamespace::Cube::SetPosition(float x, float y, float z){
     boundingBox.min = glm::vec3(0.0f);
     boundingBox.max = glm::vec3(0.5f, 0.5f, 0.5f)+ glm::vec3(point.x, point.y, point.z);
     boundingBox.min = glm::vec3(-0.5f,-0.5f,-0.5f)+ glm::vec3(point.x, point.y, point.z);
+    obb.center = glm::vec3(0.0f);
 }
 
 void CubeNamespace::Cube::SetRotation(float angle, float x_axis, float y_axis, float z_axis){
@@ -248,4 +249,27 @@ void BoundingBox::BoundingBox::MVP(CameraNamespace::Camera camera, ShaderNamespa
 
     int projectionLoc = glGetUniformLocation(shader.ID, "projection");
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////OBJECT ORIENTED BOX////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+ObjectBoundingBox::ObjectBoundingBox::ObjectBoundingBox(){
+    L_A = new int(3);
+    L_B = new int(3);
+    cross_A_B = new glm::vec3(9);
+}
+
+ObjectBoundingBox::ObjectBoundingBox::~ObjectBoundingBox(){
+    delete[] L_A;
+    delete[] L_B;
+    delete[] cross_A_B;
+}
+
+void ObjectBoundingBox::ObjectBoundingBox::SetPointers(){
+    // for(uint8_t i = 0; i < 2; ++i){
+    //     *(L_A + i) = 
+    // }
 }

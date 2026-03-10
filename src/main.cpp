@@ -133,6 +133,7 @@ int main(){
     // freeMemory(cubes);
     delete[] cubes;
 }
+
 bool check_intersection(CubeNamespace::Cube &cube1, CubeNamespace::Cube &cube2){
     // std :: cout << "x1=" << cube1.boundingBox.max.x << "||" << "y1=" << cube1.boundingBox.max.y << "||" << "z1=" << cube1.boundingBox.max.z << std :: endl;
     // std :: cout << "x2=" << cube2.boundingBox.max.x << "||" << "y2=" << cube2.boundingBox.max.y << "||" << "z2=" << cube2.boundingBox.max.z << std :: endl;
