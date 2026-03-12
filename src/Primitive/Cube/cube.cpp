@@ -4,6 +4,7 @@ void CubeNamespace::Cube::CreateCube(){
     //Used to bind the Vertex Array Object                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
     // point = new PointNamespace::Point();
     // coordSystem = new CoordSystem::CoordSystem();
+    obb.SetPointers();
     CreatingTextures();
     glGenVertexArrays(1, &VAO);
     glGenBuffers(2, VBO);
@@ -34,7 +35,7 @@ void CubeNamespace::Cube::CreateCube(){
 void CubeNamespace::Cube::Draw(){
     glBindVertexArray(VAO);
     //glDrawArrays(GL_TRIANGLES, 0, 36);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }
@@ -89,7 +90,7 @@ void CubeNamespace::Cube::SetPosition(float x, float y, float z){
     boundingBox.min = glm::vec3(0.0f);
     boundingBox.max = glm::vec3(0.5f, 0.5f, 0.5f)+ glm::vec3(point.x, point.y, point.z);
     boundingBox.min = glm::vec3(-0.5f,-0.5f,-0.5f)+ glm::vec3(point.x, point.y, point.z);
-    obb.center = glm::vec3(0.0f);
+    obb.center = glm::vec3(point.x, point.y, point.z);
 }
 
 void CubeNamespace::Cube::SetRotation(float angle, float x_axis, float y_axis, float z_axis){
@@ -97,6 +98,10 @@ void CubeNamespace::Cube::SetRotation(float angle, float x_axis, float y_axis, f
     rotation.axis.x = x_axis;
     rotation.axis.y = y_axis;
     rotation.axis.z = z_axis;
+    glm::mat3 rot = glm::mat3(glm::rotate(glm::mat4(1.0f), angle, glm::vec3(x_axis,y_axis,z_axis)));
+    obb.axis[0] = rot[0];
+    obb.axis[1] = rot[1];
+    obb.axis[2] = rot[2];
 }
 
 void CubeNamespace::Cube::SetMVP(CameraNamespace::Camera camera){
@@ -174,10 +179,10 @@ void BoundingBox::BoundingBox::CreateBoundingBoxColor(){
     // colors[7] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-left-back
 }
 void BoundingBox::BoundingBox::ChangeColor(){
-    for(uint8_t i=0 ; i<8; ++i){
-        // colors[i] = glm::vec3(0.0f, 1.0f, 0.0f);
-        std :: cout << "colors[i] = " << i << " " << colors[i].x <<" "<< colors[i].y <<" "<< colors[i].z << std :: endl; 
-    }
+    // for(uint8_t i=0 ; i<8; ++i){
+    //     // colors[i] = glm::vec3(0.0f, 1.0f, 0.0f);
+    //     // std :: cout << "colors[i] = " << i << " " << colors[i].x <<" "<< colors[i].y <<" "<< colors[i].z << std :: endl; 
+    // }
     if(!isColliding){
         for(uint8_t i=0 ; i<8; ++i){
             colors[i] = glm::vec3(1.0f, 0.0f, 0.0f);
@@ -256,20 +261,12 @@ void BoundingBox::BoundingBox::MVP(CameraNamespace::Camera camera, ShaderNamespa
 ////////////////////////OBJECT ORIENTED BOX////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
-ObjectBoundingBox::ObjectBoundingBox::ObjectBoundingBox(){
-    L_A = new int(3);
-    L_B = new int(3);
-    cross_A_B = new glm::vec3(9);
-}
+ObjectBoundingBox::ObjectBoundingBox::ObjectBoundingBox(){}
 
-ObjectBoundingBox::ObjectBoundingBox::~ObjectBoundingBox(){
-    delete[] L_A;
-    delete[] L_B;
-    delete[] cross_A_B;
-}
+ObjectBoundingBox::ObjectBoundingBox::~ObjectBoundingBox(){}
 
 void ObjectBoundingBox::ObjectBoundingBox::SetPointers(){
-    // for(uint8_t i = 0; i < 2; ++i){
-    //     *(L_A + i) = 
-    // }
+    axis[0] = glm::vec3(1.0f, 0.0f, 0.0f);
+    axis[1] = glm::vec3(0.0f, 1.0f, 0.0f);
+    axis[2] = glm::vec3(0.0f, 0.0f, 1.0f);
 }

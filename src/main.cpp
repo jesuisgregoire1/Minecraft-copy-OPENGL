@@ -25,8 +25,12 @@ using namespace Utils;
 // void static_draw(ShaderNamespace::Shader);
 // void change_color(float[], ShaderNamespace::Shader);
 bool check_intersection(CubeNamespace::Cube&, CubeNamespace::Cube&);
+bool check_intersection_obb(CubeNamespace::Cube&, CubeNamespace::Cube&);
 float counter = 0.0f;
-float speed = 0.5f;
+float speed = 1.0f;
+float speed_rot1 = 50.0f;
+float speed_rot2 = 60.0f;
+float rot;
 int main(){
     
     init();
@@ -69,7 +73,7 @@ int main(){
     triangle.CreateTriangle();
     cubes[0].CreateCube();
     cubes[1].CreateCube();
-    
+    bool test1=false;
     glEnable(GL_DEPTH_TEST); 
     while(!window.checkWindow()){
         Utils::getDeltatime(&dt);
@@ -88,7 +92,7 @@ int main(){
         ////////////////////////////////////////////////////////////////////////////////////////////////
         cubes[1].SetPosition(counter, 1.0f, 0.0f);
         counter -= dt.deltaTime * speed;
-        cubes[1].SetRotation(0*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
+        cubes[1].SetRotation(speed_rot1, 0.0f, 1.0f, 0.0f);
         cubes[1].SetMVP(camera);
         cubes[1].MVP(camera, shader);
         cubes[1].Draw();
@@ -100,7 +104,7 @@ int main(){
         ////////////////////////////////////////////////////////////////////////////////////////////////
         shader.use();
         cubes[0].SetPosition(-5.0f, 1.0f, 0.0f);
-        cubes[0].SetRotation(0*float(glfwGetTime()), 0.0f, 1.0f, 0.0f);
+        cubes[0].SetRotation(speed_rot2, 0.0f, 0.0f, 1.0f);
         cubes[0].SetMVP(camera);
         cubes[0].MVP(camera, shader);
         cubes[0].Draw();
@@ -111,16 +115,22 @@ int main(){
         coordSystem.Draw();
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // WORLD COORDINATE SYSTEM
+        test1 = check_intersection_obb(cubes[0], cubes[1]);
+        if(test1){speed = 0.0f;}
+        if(speed != 0.0f)
+            rot = float(glfwGetTime());
+        else
+            rot = 1.0f;
         worldCoordinateSystem.SetWorldCoordSystem(camera, d_coordSystemShader);
         coordSystem.Draw();
         ////////////////////////////////////////////////////////////////////////////////////////////////
         shader.use();
         quad.Rotate(camera, shader);
         quad.Draw();
-        check_intersection(cubes[0], cubes[1]);
         
-        std :: cout << "cubes[1].boundingBox=" << cubes[1].boundingBox.isColliding << 
-        " cubes[2].boundingBox=" << cubes[2].boundingBox.isColliding << std :: endl;
+        
+        // std :: cout << "cubes[1].boundingBox=" << cubes[1].boundingBox.isColliding << 
+        // " cubes[2].boundingBox=" << cubes[2].boundingBox.isColliding << std :: endl;
         // change_color(blue, shader);
         // texture.BindTexture();
         // static_draw(shader);
@@ -129,7 +139,6 @@ int main(){
         window.pollEvents();
     }
     terminate();
-    
     // freeMemory(cubes);
     delete[] cubes;
 }
@@ -154,6 +163,44 @@ bool check_intersection(CubeNamespace::Cube &cube1, CubeNamespace::Cube &cube2){
         
 }
 
+bool check_intersection_obb(CubeNamespace::Cube &cube1, CubeNamespace::Cube &cube2){
+    glm::vec3 L[15];
+    uint8_t counter = 0;
+    for(uint8_t i=0; i<3; ++i){
+        L[counter++] = cube1.obb.axis[i];
+    }
+    for(uint8_t i=0; i<3; ++i){
+        L[counter++] = cube2.obb.axis[i];
+    }
+    for(uint8_t i=0; i<3; ++i){
+        for(uint8_t j=0; j<3; j++){
+            L[counter++] = glm::cross(cube1.obb.axis[i], cube2.obb.axis[j]);
+        }
+    }
+    float R=0.0f;
+    glm::vec3 R0=glm::vec3(0.0f); 
+    for(uint8_t i=0; i<counter; ++i){
+        // if(glm::length(L[i]) < 1e-6f)
+        //     continue;
+        R = abs(glm::dot(L[i], cube2.obb.center - cube1.obb.center));
+        float sum = 0.0f;
+        for(uint8_t j=0; j<3; ++j){
+            sum += 0.5f*glm::sign(glm::dot(L[i], cube1.obb.axis[j])) * glm::dot(L[i] , cube1.obb.axis[j]);
+        }
+        for(uint8_t j=0; j<3; ++j){
+            sum += 0.5f*glm::sign(glm::dot(L[i], cube2.obb.axis[j])) * glm::dot(L[i] , cube2.obb.axis[j]);
+        }
+        if(R>sum){
+            cube1.boundingBox.isColliding = false;
+            cube2.boundingBox.isColliding = false;
+            return false;
+        }
+    }
+    cube1.boundingBox.isColliding = true;
+    cube2.boundingBox.isColliding = true;
+    // speed = 0.0f;
+    return true;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

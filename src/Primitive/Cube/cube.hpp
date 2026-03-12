@@ -46,11 +46,9 @@ namespace BoundingBox{
 namespace ObjectBoundingBox{
     struct ObjectBoundingBox{
         glm::vec3 center;
-        uint8_t X_AxisLength=1, Y_AxisLength=1, Z_AxisLength=1;
+        glm::vec3 centerAxis;
         float x_axisLength=1/2, y_axisLength=1/2, z_axisLength=1/2;
-        int* L_A             = nullptr;
-        int* L_B             = nullptr;
-        glm::vec3* cross_A_B = nullptr;
+        glm::vec3 axis[3];
         uint8_t lengthA = 3, lengthB = 3, lengthCrossAB = 9;
         ObjectBoundingBox();
         ~ObjectBoundingBox();
@@ -64,7 +62,7 @@ namespace CubeNamespace{
             CoordSystem::CoordSystem coordSystem;
             Transformation::Point point;
             Transformation::Rotation rotation;;
-            ObjectBoundingBox::ObjectBoundingBox obb;
+            
             unsigned int VBO[2], VAO, EBO;
             glm::mat4 model = glm::mat4(1.0f);
             glm::mat4 view = glm::mat4(1.0f);
@@ -129,6 +127,7 @@ namespace CubeNamespace{
 
         public:
             BoundingBox::BoundingBox boundingBox; 
+            ObjectBoundingBox::ObjectBoundingBox obb;
             void CreateCube();
             void CreatingTextures();
             void Draw();
