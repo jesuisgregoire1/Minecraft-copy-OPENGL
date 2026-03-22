@@ -30,7 +30,6 @@ namespace TriangleNamespace{
         public:
             void CreateTriangle();
             void Draw();
-            void CreatingTextures();
     };
 }
 #endif

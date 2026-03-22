@@ -15,6 +15,7 @@
 #include "Camera/camera.hpp"
 #include "Debug/CoordSystem.hpp"
 #include "Debug/WorldCoordSystem.hpp"
+#define LIGHTSCENE 1
 
 //#include "stb_image.h"
 using namespace WindowNamespace;
@@ -31,6 +32,7 @@ float speed = 1.0f;
 float speed_rot1 = 50.0f;
 float speed_rot2 = 60.0f;
 float rot;
+
 int main(){
     
     init();
@@ -43,7 +45,16 @@ int main(){
     glfwSetInputMode(window.getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     //Callbacks
     glfwSetFramebufferSizeCallback(window.getWindow(), framebuffer_size_callback);
+#if LIGHTSCENE == 1
+    std :: cout << "HERE" << std :: endl;
+
+
+
+
     
+#endif
+#pragma region commmented for lighting scene
+#if LIGHTSCENE == 0
     //Utils
     Utils::DeltaTime dt = Utils::DeltaTime();
     //Input Handler
@@ -141,6 +152,8 @@ int main(){
     terminate();
     // freeMemory(cubes);
     delete[] cubes;
+#endif
+#pragma endregion
 }
 
 bool check_intersection(CubeNamespace::Cube &cube1, CubeNamespace::Cube &cube2){
