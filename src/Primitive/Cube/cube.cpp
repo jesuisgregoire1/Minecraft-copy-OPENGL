@@ -28,8 +28,6 @@ void CubeNamespace::Cube::CreateCube(){
     //Used to bind the Element Buffer object buffer
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-
 }
 
 void CubeNamespace::Cube::Draw(){
@@ -75,10 +73,6 @@ void CubeNamespace::Cube::CreatingTextures(){
     else{
         std :: cout << "The cube is not initialized with the texture Data" << std :: endl;
     }
-}
-
-void CubeNamespace::Cube::SetModel(){
-
 }
 
 void CubeNamespace::Cube::SetPosition(float x, float y, float z){
@@ -178,6 +172,7 @@ void BoundingBox::BoundingBox::CreateBoundingBoxColor(){
     // colors[6] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-right-back
     // colors[7] = glm::vec3(1.0f, 0.0f, 0.0f); // bottom-left-back
 }
+
 void BoundingBox::BoundingBox::ChangeColor(){
     // for(uint8_t i=0 ; i<8; ++i){
     //     // colors[i] = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -195,6 +190,7 @@ void BoundingBox::BoundingBox::ChangeColor(){
     glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
     glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(colors), colors);
 }
+
 BoundingBox::BoundingBox::BoundingBox(){
     CreateBoundingBoxPoints();
     CreateBoundingBoxColor();

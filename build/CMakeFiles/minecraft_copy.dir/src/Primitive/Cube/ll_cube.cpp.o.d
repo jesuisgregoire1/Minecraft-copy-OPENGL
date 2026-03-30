@@ -1,5 +1,6 @@
-CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
-  /Users/jesuisgregoire/minecraft_copy/src/main.cpp \
+CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o: \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.cpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__config_site \
@@ -791,9 +792,6 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/stack.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/print \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/unistd.h \
-  /Users/jesuisgregoire/minecraft_copy/include/glad/glad.h \
-  /Users/jesuisgregoire/minecraft_copy/include/KHR/khrplatform.h \
-  /Users/jesuisgregoire/minecraft_copy/include/GLFW/glfw3.h \
   /Users/jesuisgregoire/minecraft_copy/include/glm/glm.hpp \
   /Users/jesuisgregoire/minecraft_copy/include/glm/detail/_fixes.hpp \
   /Users/jesuisgregoire/minecraft_copy/include/glm/detail/setup.hpp \
@@ -1103,9 +1101,12 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
   /Users/jesuisgregoire/minecraft_copy/include/glm/gtc/../mat4x2.hpp \
   /Users/jesuisgregoire/minecraft_copy/include/glm/gtc/../mat4x3.hpp \
   /Users/jesuisgregoire/minecraft_copy/include/glm/gtc/type_ptr.inl \
-  /Users/jesuisgregoire/minecraft_copy/src/Window/window.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Utils/utils.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Shaders/shaders.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Camera/camera.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Camera/../Window/window.hpp \
+  /Users/jesuisgregoire/minecraft_copy/include/glad/glad.h \
+  /Users/jesuisgregoire/minecraft_copy/include/KHR/khrplatform.h \
+  /Users/jesuisgregoire/minecraft_copy/include/GLFW/glfw3.h \
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Shaders/shaders.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
@@ -1126,26 +1127,4 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/triangle.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/cube.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Camera/camera.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Camera/../Window/window.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Shaders/shaders.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/CoordSystem.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/../Camera/camera.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/../../Debug/../Shaders/shaders.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/quad.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/../../Camera/camera.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/../../Shaders/shaders.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Texture/texture.hpp \
-  /Users/jesuisgregoire/minecraft_copy/include/stb_lib/stb_image.h \
-  /Users/jesuisgregoire/minecraft_copy/src/InputHandler/input_handler.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/InputHandler/../Camera/camera.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Debug/WorldCoordSystem.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Debug/../Camera/camera.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Debug/../Shaders/shaders.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/test_triangle.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.hpp
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream

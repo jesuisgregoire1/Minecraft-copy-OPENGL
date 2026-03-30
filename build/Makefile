@@ -273,6 +273,30 @@ src/Primitive/Cube/cube.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.s
 .PHONY : src/Primitive/Cube/cube.cpp.s
 
+src/Primitive/Cube/ll_cube.o: src/Primitive/Cube/ll_cube.cpp.o
+.PHONY : src/Primitive/Cube/ll_cube.o
+
+# target to build an object file
+src/Primitive/Cube/ll_cube.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o
+.PHONY : src/Primitive/Cube/ll_cube.cpp.o
+
+src/Primitive/Cube/ll_cube.i: src/Primitive/Cube/ll_cube.cpp.i
+.PHONY : src/Primitive/Cube/ll_cube.i
+
+# target to preprocess a source file
+src/Primitive/Cube/ll_cube.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.i
+.PHONY : src/Primitive/Cube/ll_cube.cpp.i
+
+src/Primitive/Cube/ll_cube.s: src/Primitive/Cube/ll_cube.cpp.s
+.PHONY : src/Primitive/Cube/ll_cube.s
+
+# target to generate assembly for a file
+src/Primitive/Cube/ll_cube.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.s
+.PHONY : src/Primitive/Cube/ll_cube.cpp.s
+
 src/Primitive/Quad/quad.o: src/Primitive/Quad/quad.cpp.o
 .PHONY : src/Primitive/Quad/quad.o
 
@@ -296,6 +320,30 @@ src/Primitive/Quad/quad.s: src/Primitive/Quad/quad.cpp.s
 src/Primitive/Quad/quad.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.s
 .PHONY : src/Primitive/Quad/quad.cpp.s
+
+src/Primitive/Triangle/test_triangle.o: src/Primitive/Triangle/test_triangle.cpp.o
+.PHONY : src/Primitive/Triangle/test_triangle.o
+
+# target to build an object file
+src/Primitive/Triangle/test_triangle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o
+.PHONY : src/Primitive/Triangle/test_triangle.cpp.o
+
+src/Primitive/Triangle/test_triangle.i: src/Primitive/Triangle/test_triangle.cpp.i
+.PHONY : src/Primitive/Triangle/test_triangle.i
+
+# target to preprocess a source file
+src/Primitive/Triangle/test_triangle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.i
+.PHONY : src/Primitive/Triangle/test_triangle.cpp.i
+
+src/Primitive/Triangle/test_triangle.s: src/Primitive/Triangle/test_triangle.cpp.s
+.PHONY : src/Primitive/Triangle/test_triangle.s
+
+# target to generate assembly for a file
+src/Primitive/Triangle/test_triangle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.s
+.PHONY : src/Primitive/Triangle/test_triangle.cpp.s
 
 src/Primitive/Triangle/triangle.o: src/Primitive/Triangle/triangle.cpp.o
 .PHONY : src/Primitive/Triangle/triangle.o
@@ -492,9 +540,15 @@ help:
 	@echo "... src/Primitive/Cube/cube.o"
 	@echo "... src/Primitive/Cube/cube.i"
 	@echo "... src/Primitive/Cube/cube.s"
+	@echo "... src/Primitive/Cube/ll_cube.o"
+	@echo "... src/Primitive/Cube/ll_cube.i"
+	@echo "... src/Primitive/Cube/ll_cube.s"
 	@echo "... src/Primitive/Quad/quad.o"
 	@echo "... src/Primitive/Quad/quad.i"
 	@echo "... src/Primitive/Quad/quad.s"
+	@echo "... src/Primitive/Triangle/test_triangle.o"
+	@echo "... src/Primitive/Triangle/test_triangle.i"
+	@echo "... src/Primitive/Triangle/test_triangle.s"
 	@echo "... src/Primitive/Triangle/triangle.o"
 	@echo "... src/Primitive/Triangle/triangle.i"
 	@echo "... src/Primitive/Triangle/triangle.s"

@@ -19,6 +19,7 @@ add_executable(${PROJECT_NAME}
     src/Utils/utils.cpp
     src/Shaders/shaders.cpp
     src/Primitive/Triangle/triangle.cpp
+    src/Primitive/Triangle/test_triangle.cpp
     src/Primitive/Cube/cube.cpp
     src/Primitive/Quad/quad.cpp
     src/Texture/texture.cpp
@@ -28,6 +29,7 @@ add_executable(${PROJECT_NAME}
     src/Debug/WorldCoordSystem.cpp
     src/stb_lib.cpp
     external_ref/glad.c
+    src/Primitive/Cube/ll_cube.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}

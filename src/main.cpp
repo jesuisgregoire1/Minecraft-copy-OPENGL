@@ -15,8 +15,10 @@
 #include "Camera/camera.hpp"
 #include "Debug/CoordSystem.hpp"
 #include "Debug/WorldCoordSystem.hpp"
+#include "Primitive/Triangle/test_triangle.hpp" //DELETE IT AFTER
+#include "Primitive/Cube/ll_cube.hpp"
 #define LIGHTSCENE 1
-
+#define TESTING 0
 //#include "stb_image.h"
 using namespace WindowNamespace;
 using namespace Utils;
@@ -45,14 +47,63 @@ int main(){
     glfwSetInputMode(window.getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     //Callbacks
     glfwSetFramebufferSizeCallback(window.getWindow(), framebuffer_size_callback);
+
+
 #if LIGHTSCENE == 1
-    std :: cout << "HERE" << std :: endl;
 
-
-
-
+    Utils::DeltaTime dt = Utils::DeltaTime();
+    InputHandlerNamespace::InputHandler inputHandler = InputHandlerNamespace::InputHandler();
+    CameraNamespace::Camera camera = CameraNamespace::Camera();
+    glfwSetWindowUserPointer(window.getWindow(), &camera);
+    glfwSetCursorPosCallback(window.getWindow(), camera.MouseCallback);  
+#if TESTING == 0    
+    ll_CubeNamespace::LL_Cube cube = ll_CubeNamespace::LL_Cube();
+    cube.SetPosition(1.0f, 1.0f, -2.0f);
+    cube.SetRotation(55.0f, 0.0f, 1.0f, 0.0f);
+    cube.CreateCube();
+    ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.fs");
+    ll_CubeNamespace::LL_Cube lightSource = ll_CubeNamespace::LL_Cube();
+    lightSource.CreateCube();
+    ShaderNamespace::Shader lightSourceShader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/light_source.fs");
     
+    shader.use();
+    int lightPos = glGetUniformLocation(shader.ID, "lightPos");
+    glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
+
+
+#elif TESTING == 1
+    QuadNamespace::Quad quad = QuadNamespace::Quad();
+    ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.fs");
+    quad.Test();
 #endif
+    float time = glfwGetTime();
+    glEnable(GL_DEPTH_TEST); 
+    while(!window.checkWindow()){
+        Utils::getDeltatime(&dt);
+        closeWindowWithESCButton(window.getWindow());
+        glClearColor(1.0f, 0.5f, 1.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        inputHandler.ProcessInput(window.getWindow(), camera, dt.deltaTime);
+#if TESTING == 1
+        quad.Rotate(camera, shader);
+        quad.Draw();
+        quad.GenerateCrossProduct(camera, shader);
+        quad.SecondDraw();
+#elif TESTING == 0
+        shader.use();
+        cube.ModelViewProjection(camera, shader);
+        cube.Draw();
+        lightSource.ModelViewProjection(camera, lightSourceShader, glm::vec3(0.1f, 0.1f, 0.1f));
+        lightSource.Draw();
+#endif
+        
+        window.swapBuffers();       
+        window.pollEvents();
+    }
+    terminate();
+#endif
+
+
 #pragma region commmented for lighting scene
 #if LIGHTSCENE == 0
     //Utils
@@ -266,8 +317,6 @@ bool check_intersection_obb(CubeNamespace::Cube &cube1, CubeNamespace::Cube &cub
 //     int projectionLoc = glGetUniformLocation(shader.ID, "projection");
 //     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 // }
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

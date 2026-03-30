@@ -142,10 +142,24 @@ CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/triangle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/triangle.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/triangle.cpp -o CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/triangle.cpp.s
 
+CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
+CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/test_triangle.cpp
+CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/test_triangle.cpp
+
+CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/test_triangle.cpp > CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.i
+
+CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/test_triangle.cpp -o CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.s
+
 CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/cube.cpp
 CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/cube.cpp
 
 CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.s: cmake_force
 CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/quad.cpp
 CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Primitive/Quad/quad.cpp
 
 CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.i: cmake_force
@@ -173,7 +187,7 @@ CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.s: cmake_force
 CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Texture/texture.cpp
 CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Texture/texture.cpp
 
 CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.i: cmake_force
@@ -187,7 +201,7 @@ CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.s: cmake_force
 CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.cpp
 CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Camera/camera.cpp
 
 CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.i: cmake_force
@@ -201,7 +215,7 @@ CMakeFiles/minecraft_copy.dir/src/Camera/camera.cpp.s: cmake_force
 CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/InputHandler/input_handler.cpp
 CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/InputHandler/input_handler.cpp
 
 CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.i: cmake_force
@@ -215,7 +229,7 @@ CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.s: cmake_force
 CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.cpp
 CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Debug/CoordSystem.cpp
 
 CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.i: cmake_force
@@ -229,7 +243,7 @@ CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.s: cmake_force
 CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Debug/WorldCoordSystem.cpp
 CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Debug/WorldCoordSystem.cpp
 
 CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.i: cmake_force
@@ -243,7 +257,7 @@ CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.s: cmake_force
 CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/stb_lib.cpp
 CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/stb_lib.cpp
 
 CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.i: cmake_force
@@ -257,7 +271,7 @@ CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.s: cmake_force
 CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o: CMakeFiles/minecraft_copy.dir/flags.make
 CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o: /Users/jesuisgregoire/minecraft_copy/external_ref/glad.c
 CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o -MF CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o.d -o CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o -c /Users/jesuisgregoire/minecraft_copy/external_ref/glad.c
 
 CMakeFiles/minecraft_copy.dir/external_ref/glad.c.i: cmake_force
@@ -268,6 +282,20 @@ CMakeFiles/minecraft_copy.dir/external_ref/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/minecraft_copy.dir/external_ref/glad.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jesuisgregoire/minecraft_copy/external_ref/glad.c -o CMakeFiles/minecraft_copy.dir/external_ref/glad.c.s
 
+CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
+CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.cpp
+CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.cpp
+
+CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.cpp > CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.i
+
+CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.cpp -o CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.s
+
 # Object files for target minecraft_copy
 minecraft_copy_OBJECTS = \
 "CMakeFiles/minecraft_copy.dir/src/main.cpp.o" \
@@ -275,6 +303,7 @@ minecraft_copy_OBJECTS = \
 "CMakeFiles/minecraft_copy.dir/src/Utils/utils.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/src/Shaders/shaders.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/triangle.cpp.o" \
+"CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o" \
@@ -283,7 +312,8 @@ minecraft_copy_OBJECTS = \
 "CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o" \
-"CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o"
+"CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o" \
+"CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o"
 
 # External object files for target minecraft_copy
 minecraft_copy_EXTERNAL_OBJECTS =
@@ -293,6 +323,7 @@ minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Window/window.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Utils/utils.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Shaders/shaders.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/triangle.cpp.o
+minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Primitive/Triangle/test_triangle.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/cube.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Primitive/Quad/quad.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Texture/texture.cpp.o
@@ -302,10 +333,11 @@ minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Debug/CoordSystem.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o
+minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/build.make
 minecraft_copy: /Users/jesuisgregoire/minecraft_copy/lib/libglfw3.a
 minecraft_copy: CMakeFiles/minecraft_copy.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable minecraft_copy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable minecraft_copy"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minecraft_copy.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

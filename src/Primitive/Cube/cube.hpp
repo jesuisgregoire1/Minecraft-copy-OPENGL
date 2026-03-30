@@ -62,7 +62,6 @@ namespace CubeNamespace{
             CoordSystem::CoordSystem coordSystem;
             Transformation::Point point;
             Transformation::Rotation rotation;;
-            
             unsigned int VBO[2], VAO, EBO;
             glm::mat4 model = glm::mat4(1.0f);
             glm::mat4 view = glm::mat4(1.0f);
@@ -131,7 +130,6 @@ namespace CubeNamespace{
             void CreateCube();
             void CreatingTextures();
             void Draw();
-            void SetModel();
             void MVP(CameraNamespace::Camera camera, ShaderNamespace::Shader shader);
             void SetMVP(CameraNamespace::Camera);
             void SetRotation(float angle, float x_axis, float y_axis, float z_axis);
