@@ -58,8 +58,8 @@ int main(){
     glfwSetCursorPosCallback(window.getWindow(), camera.MouseCallback);  
 #if TESTING == 0    
     ll_CubeNamespace::LL_Cube cube = ll_CubeNamespace::LL_Cube();
-    cube.SetPosition(1.0f, 1.0f, -2.0f);
-    cube.SetRotation(55.0f, 0.0f, 1.0f, 0.0f);
+    cube.SetPosition(0.0f, 0.5f, -2.0f);
+    cube.SetRotation(0.0f, 0.0f, 1.0f, 0.0f);
     cube.CreateCube();
     ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.fs");
     ll_CubeNamespace::LL_Cube lightSource = ll_CubeNamespace::LL_Cube();
@@ -90,9 +90,11 @@ int main(){
         quad.GenerateCrossProduct(camera, shader);
         quad.SecondDraw();
 #elif TESTING == 0
-        shader.use();
         cube.ModelViewProjection(camera, shader);
         cube.Draw();
+        lightSourceShader.use();
+        int viewPos = glGetUniformLocation(shader.ID, "viewPos");
+        glUniform3fv(viewPos, 1, glm::value_ptr(camera.GetcameraPos()));
         lightSource.ModelViewProjection(camera, lightSourceShader, glm::vec3(0.1f, 0.1f, 0.1f));
         lightSource.Draw();
 #endif

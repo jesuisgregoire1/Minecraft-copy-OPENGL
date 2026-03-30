@@ -38,9 +38,9 @@ void ll_CubeNamespace::LL_Cube::ModelViewProjection(CameraNamespace::Camera came
     //TRANSLATION ROTATION AND SCALING
     
     model = glm::mat4(1.0f);    
-    model = glm::scale(model, scale);
     model = glm::translate(model, glm::vec3(points.x, points.y, points.z));
     model = glm::rotate(model, glm::radians(angle), glm::vec3(rotation.x, rotation.y, rotation.z));
+    model = glm::scale(model, scale);
     // model = glm::rotate(model, glm::radians(rotation.angle), 
     //                 glm::vec3(rotation.axis.x, rotation.axis.y, rotation.axis.z));
     ////////////////////////////////////////////////////////////////////////////////////////
