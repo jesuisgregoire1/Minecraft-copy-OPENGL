@@ -58,7 +58,7 @@ int main(){
     glfwSetCursorPosCallback(window.getWindow(), camera.MouseCallback);  
 #if TESTING == 0    
     ll_CubeNamespace::LL_Cube cube = ll_CubeNamespace::LL_Cube();
-    cube.SetPosition(0.0f, 0.5f, -2.0f);
+    cube.SetPosition(0.0f, 2.5f, -2.0f);
     cube.SetRotation(0.0f, 0.0f, 1.0f, 0.0f);
     cube.CreateCube();
     ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.fs");
@@ -67,7 +67,7 @@ int main(){
     ShaderNamespace::Shader lightSourceShader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/light_source.fs");
     
     shader.use();
-    int lightPos = glGetUniformLocation(shader.ID, "lightPos");
+    int lightPos = glGetUniformLocation(shader.ID, "light.position");
     glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
 
 
@@ -81,7 +81,7 @@ int main(){
     while(!window.checkWindow()){
         Utils::getDeltatime(&dt);
         closeWindowWithESCButton(window.getWindow());
-        glClearColor(1.0f, 0.5f, 1.0f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         inputHandler.ProcessInput(window.getWindow(), camera, dt.deltaTime);
 #if TESTING == 1
@@ -93,12 +93,14 @@ int main(){
         cube.ModelViewProjection(camera, shader);
         cube.Draw();
         lightSourceShader.use();
+        shader.use();
+        int lightPos = glGetUniformLocation(shader.ID, "light.position");
+        glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
         int viewPos = glGetUniformLocation(shader.ID, "viewPos");
         glUniform3fv(viewPos, 1, glm::value_ptr(camera.GetcameraPos()));
-        lightSource.ModelViewProjection(camera, lightSourceShader, glm::vec3(0.1f, 0.1f, 0.1f));
+        lightSource.ModelViewProjection(camera, lightSourceShader, glm::vec3(0.5f, 0.5f, 0.5f));
         lightSource.Draw();
 #endif
-        
         window.swapBuffers();       
         window.pollEvents();
     }

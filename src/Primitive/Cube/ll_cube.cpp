@@ -36,7 +36,6 @@ void ll_CubeNamespace::LL_Cube::Draw(){
 void ll_CubeNamespace::LL_Cube::ModelViewProjection(CameraNamespace::Camera camera, ShaderNamespace::Shader shader,glm::vec3 scale){
         ////////////////////////////////////////////////////////////////////////////////////////
     //TRANSLATION ROTATION AND SCALING
-    
     model = glm::mat4(1.0f);    
     model = glm::translate(model, glm::vec3(points.x, points.y, points.z));
     model = glm::rotate(model, glm::radians(angle), glm::vec3(rotation.x, rotation.y, rotation.z));
@@ -60,11 +59,40 @@ void ll_CubeNamespace::LL_Cube::ModelViewProjection(CameraNamespace::Camera came
     int projectionLoc = glGetUniformLocation(shader.ID, "projection");
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-    int objectColor = glGetUniformLocation(shader.ID, "objectColor");
-    glUniform3fv(objectColor, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+    // int objectColor = glGetUniformLocation(shader.ID, "objectColor");
+    // glUniform3fv(objectColor, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
 
-    int lightColor = glGetUniformLocation(shader.ID, "lightColor");
-    glUniform3fv(lightColor, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+    int material_ambient = glGetUniformLocation(shader.ID, "material.ambient");
+    glUniform3fv(material_ambient, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+    
+    int material_diffuse = glGetUniformLocation(shader.ID, "material.diffuse");
+    glUniform3fv(material_diffuse, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+    
+    int material_specular = glGetUniformLocation(shader.ID, "material.specular");
+    glUniform3fv(material_specular, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
+    
+    int material_shininess = glGetUniformLocation(shader.ID, "material.shininess");
+    glUniform1f(material_shininess, 32.0f);
+    
+    glm::vec3 lightColor;
+    lightColor.x = sin(glfwGetTime() * 2.0f);
+    lightColor.y = sin(glfwGetTime() * 0.7f);
+    lightColor.z = sin(glfwGetTime() * 1.3f);
+    
+    glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f); 
+    glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); 
+
+    int light_ambient = glGetUniformLocation(shader.ID, "light.ambient");
+    glUniform3fv(light_ambient, 1, glm::value_ptr(ambientColor));
+    
+    int light_diffuse = glGetUniformLocation(shader.ID, "light.diffuse");
+    glUniform3fv(light_diffuse, 1, glm::value_ptr(diffuseColor));
+    
+    int light_specular = glGetUniformLocation(shader.ID, "light.specular");
+    glUniform3fv(light_specular, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+
+    // int lightColor = glGetUniformLocation(shader.ID, "lightColor");
+    // glUniform3fv(lightColor, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
 }
 
 void ll_CubeNamespace::LL_Cube::SetPosition(float x, float y, float z){
