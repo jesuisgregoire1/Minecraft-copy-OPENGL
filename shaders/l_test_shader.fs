@@ -18,14 +18,14 @@ out vec4 FragColor;
 
 in vec3 Normal;  
 in vec3 FragPos;  
-  
+in vec2 TextureCoord; 
 // uniform vec3 lightPos;
 uniform vec3 viewPos;
 // uniform vec3 lightColor;
 // uniform vec3 objectColor;
 
 float specularStrenght = 0.5;
-
+uniform sampler2D ourTexture;
 
 void main()
 {
@@ -48,5 +48,6 @@ void main()
     vec3 specular = light.specular * (spec * material.specular);
 
     vec3 result = ambient + diffuse + specular;
-    FragColor = vec4(result, 1.0);
+    // FragColor = vec4(result, 1.0);
+    FragColor = texture(ourTexture, TextureCoord);
 } 

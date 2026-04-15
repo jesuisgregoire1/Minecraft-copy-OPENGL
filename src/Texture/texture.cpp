@@ -26,3 +26,11 @@ void Texture::TextureGeneration::GenerateTexture(const char* path){
 void Texture::TextureGeneration::BindTexture(){
     glBindTexture(GL_TEXTURE_2D, texture);
 }
+
+int Texture::TextureGeneration::GetTextureWidth(){
+    return _width;
+}
+
+int Texture::TextureGeneration::GetTextureHeigth(){
+    return _height;
+}

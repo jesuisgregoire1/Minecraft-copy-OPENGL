@@ -19,6 +19,7 @@
 #include "Primitive/Cube/ll_cube.hpp"
 #define LIGHTSCENE 1
 #define TESTING 0
+#define DEBUG
 //#include "stb_image.h"
 using namespace WindowNamespace;
 using namespace Utils;
@@ -50,13 +51,18 @@ int main(){
 
 
 #if LIGHTSCENE == 1
-
     Utils::DeltaTime dt = Utils::DeltaTime();
     InputHandlerNamespace::InputHandler inputHandler = InputHandlerNamespace::InputHandler();
     CameraNamespace::Camera camera = CameraNamespace::Camera();
     glfwSetWindowUserPointer(window.getWindow(), &camera);
     glfwSetCursorPosCallback(window.getWindow(), camera.MouseCallback);  
-#if TESTING == 0    
+    Texture::TextureGeneration t_wood = Texture::TextureGeneration();
+    t_wood.GenerateTexture("../resources/container2.png");
+#ifdef DEBUG
+    std :: cout << "Texture height : " << t_wood.GetTextureHeigth() << std :: endl;
+    std :: cout << "Texture width  : " << t_wood.GetTextureWidth() << std :: endl;
+#endif
+#if TESTING == 0   
     ll_CubeNamespace::LL_Cube cube = ll_CubeNamespace::LL_Cube();
     cube.SetPosition(0.0f, 2.5f, -2.0f);
     cube.SetRotation(0.0f, 0.0f, 1.0f, 0.0f);
@@ -90,6 +96,7 @@ int main(){
         quad.GenerateCrossProduct(camera, shader);
         quad.SecondDraw();
 #elif TESTING == 0
+        t_wood.BindTexture();  
         cube.ModelViewProjection(camera, shader);
         cube.Draw();
         lightSourceShader.use();

@@ -9,13 +9,14 @@
 namespace ll_CubeNamespace{
     class LL_Cube{
         public:
-        GLuint VAO, VBO[2], EBO;
+        GLuint VAO, VBO[3], EBO;
         float posX=0.0f, posY=0.0f, posZ=0.0f;
         bool initialized = true;
         glm::mat4 model, view, projection;
         glm::vec3 points=glm::vec3(0.0f, 2.0f, 0.0f), rotation=glm::vec3(1.0f, 1.0f, 1.0f);
         float angle=0.0f;
         #pragma region cube_vertices_and_indices
+        float textures[48];
         float vertices[72] = {
         // back
         0.5f, 0.5f,-0.5f,

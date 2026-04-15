@@ -1,8 +1,9 @@
 #include "ll_cube.hpp"
 
 void ll_CubeNamespace::LL_Cube::CreateCube(){
+    CreatingTextures();
     glGenVertexArrays(1, &VAO);
-    glGenBuffers(2, VBO);
+    glGenBuffers(3, VBO);
     glGenBuffers(1, &EBO);
     glBindVertexArray(VAO);
     //Used to bind the Vertex Buffer Object
@@ -19,6 +20,13 @@ void ll_CubeNamespace::LL_Cube::CreateCube(){
     // Final part to tell the shader how to read this data
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3*sizeof(float), (void*)0);
     glEnableVertexAttribArray(1);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(textures), textures, GL_STATIC_DRAW);
+
+    // Final part to tell the shader how to read this data
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 2*sizeof(float), (void*)0);
+    glEnableVertexAttribArray(2);
 
     //Used to bind the Element Buffer object buffer
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
@@ -106,4 +114,17 @@ void ll_CubeNamespace::LL_Cube::SetRotation(float angle, float x_axis, float y_a
     rotation.x = x_axis;
     rotation.y = y_axis;
     rotation.z = z_axis;
+}
+
+void ll_CubeNamespace::LL_Cube::CreatingTextures(){
+    for(uint16_t i=0; i< 48; i+=8){
+        textures[i] = 1.0f;
+        textures[i+1] = 1.0f;
+        textures[i+2] = 1.0f;
+        textures[i+3] = 0.0f;
+        textures[i+4] = 0.0f;
+        textures[i+5] = 0.0f;
+        textures[i+6] = 0.0f;
+        textures[i+7] = 1.0f;  
+    }
 }

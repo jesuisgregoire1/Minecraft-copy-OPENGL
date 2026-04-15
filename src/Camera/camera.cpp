@@ -72,7 +72,7 @@ void CameraNamespace::Camera::ProcessData(double xPos, double yPos){
     direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
     direction.y = sin(glm::radians(pitch));
     direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    std :: cout << "X = " << direction.x << " || " << "Y = " << direction.y << " || " << "Z = " << direction.z<< std :: endl;
+    //std :: cout << "X = " << direction.x << " || " << "Y = " << direction.y << " || " << "Z = " << direction.z<< std :: endl;
     cameraFront = glm::normalize(direction);
 }
 

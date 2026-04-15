@@ -13,6 +13,8 @@ namespace Texture{
         public:
             void GenerateTexture(const char* path);
             void BindTexture();
+            int GetTextureWidth();
+            int GetTextureHeigth();
     };
 }
 #endif
