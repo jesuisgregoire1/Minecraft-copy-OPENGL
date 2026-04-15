@@ -62,6 +62,13 @@ int main(){
     std :: cout << "Texture height : " << t_wood.GetTextureHeigth() << std :: endl;
     std :: cout << "Texture width  : " << t_wood.GetTextureWidth() << std :: endl;
 #endif
+    Texture::TextureGeneration t_wood_specular = Texture::TextureGeneration();
+    t_wood_specular.GenerateTexture("../resources/container2_specular.png");
+#ifdef DEBUG
+    std :: cout << "Texture height : " << t_wood_specular.GetTextureHeigth() << std :: endl;
+    std :: cout << "Texture width  : " << t_wood_specular.GetTextureWidth() << std :: endl;
+#endif
+
 #if TESTING == 0   
     ll_CubeNamespace::LL_Cube cube = ll_CubeNamespace::LL_Cube();
     cube.SetPosition(0.0f, 2.5f, -2.0f);
@@ -96,7 +103,10 @@ int main(){
         quad.GenerateCrossProduct(camera, shader);
         quad.SecondDraw();
 #elif TESTING == 0
-        t_wood.BindTexture();  
+        glActiveTexture(GL_TEXTURE0);
+        t_wood.BindTexture();
+        glActiveTexture(GL_TEXTURE1);
+        t_wood_specular.BindTexture();  
         cube.ModelViewProjection(camera, shader);
         cube.Draw();
         lightSourceShader.use();

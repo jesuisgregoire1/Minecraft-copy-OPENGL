@@ -70,22 +70,26 @@ void ll_CubeNamespace::LL_Cube::ModelViewProjection(CameraNamespace::Camera came
     // int objectColor = glGetUniformLocation(shader.ID, "objectColor");
     // glUniform3fv(objectColor, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
 
-    int material_ambient = glGetUniformLocation(shader.ID, "material.ambient");
-    glUniform3fv(material_ambient, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+    // int material_ambient = glGetUniformLocation(shader.ID, "material.ambient");
+    // glUniform3fv(material_ambient, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+    
+    // int material_diffuse = glGetUniformLocation(shader.ID, "material.diffuse");
+    // glUniform3fv(material_diffuse, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
     
     int material_diffuse = glGetUniformLocation(shader.ID, "material.diffuse");
-    glUniform3fv(material_diffuse, 1, glm::value_ptr(glm::vec3(1.0f, 0.5f, 0.31f)));
+    glUniform1i(material_diffuse, 0);
     
+    // int material_specular = glGetUniformLocation(shader.ID, "material.specular");
+    // glUniform3fv(material_specular, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
     int material_specular = glGetUniformLocation(shader.ID, "material.specular");
-    glUniform3fv(material_specular, 1, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
-    
+    glUniform1i(material_specular, 1);
     int material_shininess = glGetUniformLocation(shader.ID, "material.shininess");
     glUniform1f(material_shininess, 32.0f);
     
-    glm::vec3 lightColor;
-    lightColor.x = sin(glfwGetTime() * 2.0f);
-    lightColor.y = sin(glfwGetTime() * 0.7f);
-    lightColor.z = sin(glfwGetTime() * 1.3f);
+    glm::vec3 lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
+    // lightColor.x = sin(glfwGetTime() * 2.0f);
+    // lightColor.y = sin(glfwGetTime() * 0.7f);
+    // lightColor.z = sin(glfwGetTime() * 1.3f);
     
     glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f); 
     glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); 
