@@ -2,7 +2,6 @@
 
 CameraNamespace::Camera::Camera(){
     view = glm::lookAt(cameraPos, cameraPos+cameraFront, cameraUp);
-    
 }
 
 float CameraNamespace::Camera::GetCameraSpeed() const{
@@ -81,3 +80,6 @@ void CameraNamespace::Camera::MouseCallback(GLFWwindow* window, double xPos, dou
     camera->ProcessData(xPos, yPos);
 }
 
+glm::vec3 CameraNamespace::Camera::GetCameraFront(){
+    return cameraFront;
+}

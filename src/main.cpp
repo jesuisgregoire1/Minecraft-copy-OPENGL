@@ -81,14 +81,29 @@ int main(){
     cube.CreateCube();
     ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.fs");
     lightSource.CreateCube();
-    lightSource.SetPosition(0.0f, 100.0f, 0.0f);
+    lightSource.SetPosition(0.0f, 0.0f, 0.0f);
     ShaderNamespace::Shader lightSourceShader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/light_source.fs");
     shader.use();
-    // Don't use this anymore
-    // int lightPos = glGetUniformLocation(shader.ID, "light.position");
-    // glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
-    int lightDir = glGetUniformLocation(shader.ID, "light.direction");
-    glUniform3fv(lightDir, 1, glm::value_ptr(glm::vec3(-0.2f, -1.0f, -0.3f)));
+    // USED WHEN WE WANT THE LIGHT POSITION
+    int lightPos = glGetUniformLocation(shader.ID, "light.position");
+    glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
+    // POINT LIGHT STAFF
+    int light_constant = glGetUniformLocation(shader.ID, "light.constant");
+    glUniform1f(light_constant, 1.0f);
+    int light_linear = glGetUniformLocation(shader.ID, "light.linear");
+    glUniform1f(light_linear, 0.09f);
+    int light_quadratic = glGetUniformLocation(shader.ID, "light.quadratic");
+    glUniform1f(light_quadratic, 0.00032f);
+    int flashLgihtCutOff = glGetUniformLocation(shader.ID, "flashLight.cutOff");
+    glUniform1f(flashLgihtCutOff, glm::cos(glm::radians(12.5f)));
+    int flashLgihtouterCutOff = glGetUniformLocation(shader.ID, "flashLight.outerCutOff");
+    glUniform1f(flashLgihtouterCutOff, glm::cos(glm::radians(17.5f)));
+    
+    //FLASHLIGGGGGHT
+    
+    // ONLY USED FOR DIRECTIONAL LIGHTING
+    // int lightDir = glGetUniformLocation(shader.ID, "light.direction");
+    // glUniform3fv(lightDir, 1, glm::value_ptr(glm::vec3(-0.2f, -1.0f, -0.3f)));
 
 
 #elif TESTING == 1
@@ -121,14 +136,21 @@ int main(){
         }
         // cube.ModelViewProjection(camera, shader);
         // cube.Draw();
-        lightSourceShader.use();
         shader.use();
+        int flashLightPos = glGetUniformLocation(shader.ID, "flashLight.position");
+        glUniform3fv(flashLightPos, 1, glm::value_ptr(camera.GetcameraPos()));
+        int flashLightDir = glGetUniformLocation(shader.ID, "flashLight.direction");
+        glUniform3fv(flashLightDir, 1, glm::value_ptr(camera.GetCameraFront()));
+        
         int lightPos = glGetUniformLocation(shader.ID, "light.position");
         glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
         int viewPos = glGetUniformLocation(shader.ID, "viewPos");
         glUniform3fv(viewPos, 1, glm::value_ptr(camera.GetcameraPos()));
+        
+        lightSourceShader.use();
         lightSource.ModelViewProjection(camera, lightSourceShader, glm::vec3(0.5f, 0.5f, 0.5f));
         lightSource.Draw();
+
 #endif
         window.swapBuffers();       
         window.pollEvents();

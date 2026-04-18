@@ -32,6 +32,7 @@ namespace CameraNamespace{
             glm::mat4 ModifyViewMatrix();
             void ProcessData(double xPos, double yPos);
             static void MouseCallback(GLFWwindow* window, double xPos, double yPos);
+            glm::vec3 GetCameraFront();
     };
 }
 #endif
