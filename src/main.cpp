@@ -30,6 +30,8 @@ using namespace Utils;
 // void change_color(float[], ShaderNamespace::Shader);
 bool check_intersection(CubeNamespace::Cube&, CubeNamespace::Cube&);
 bool check_intersection_obb(CubeNamespace::Cube&, CubeNamespace::Cube&);
+float return_random(uint8_t number);
+void multiple_cubes(ll_CubeNamespace::LL_Cube[]);
 float counter = 0.0f;
 float speed = 1.0f;
 float speed_rot1 = 50.0f;
@@ -71,17 +73,22 @@ int main(){
 
 #if TESTING == 0   
     ll_CubeNamespace::LL_Cube cube = ll_CubeNamespace::LL_Cube();
+    ll_CubeNamespace::LL_Cube lightSource = ll_CubeNamespace::LL_Cube();
+    ll_CubeNamespace::LL_Cube cubes[20];
+    multiple_cubes(cubes);
     cube.SetPosition(0.0f, 2.5f, -2.0f);
     cube.SetRotation(0.0f, 0.0f, 1.0f, 0.0f);
     cube.CreateCube();
     ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.fs");
-    ll_CubeNamespace::LL_Cube lightSource = ll_CubeNamespace::LL_Cube();
     lightSource.CreateCube();
+    lightSource.SetPosition(0.0f, 100.0f, 0.0f);
     ShaderNamespace::Shader lightSourceShader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", "/Users/jesuisgregoire/minecraft_copy/shaders/light_source.fs");
-    
     shader.use();
-    int lightPos = glGetUniformLocation(shader.ID, "light.position");
-    glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
+    // Don't use this anymore
+    // int lightPos = glGetUniformLocation(shader.ID, "light.position");
+    // glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
+    int lightDir = glGetUniformLocation(shader.ID, "light.direction");
+    glUniform3fv(lightDir, 1, glm::value_ptr(glm::vec3(-0.2f, -1.0f, -0.3f)));
 
 
 #elif TESTING == 1
@@ -107,8 +114,13 @@ int main(){
         t_wood.BindTexture();
         glActiveTexture(GL_TEXTURE1);
         t_wood_specular.BindTexture();  
-        cube.ModelViewProjection(camera, shader);
-        cube.Draw();
+        
+        for(uint8_t i=0 ; i< 20; ++i){
+            cubes[i].ModelViewProjection(camera, shader);
+            cubes[i].Draw();
+        }
+        // cube.ModelViewProjection(camera, shader);
+        // cube.Draw();
         lightSourceShader.use();
         shader.use();
         int lightPos = glGetUniformLocation(shader.ID, "light.position");
@@ -285,6 +297,41 @@ bool check_intersection_obb(CubeNamespace::Cube &cube1, CubeNamespace::Cube &cub
     cube2.boundingBox.isColliding = true;
     // speed = 0.0f;
     return true;
+}
+
+void multiple_cubes(ll_CubeNamespace::LL_Cube cubes[]){
+    //random number generated in, needs to be between the bounds and also to not be generated before
+    float last_pos_X = 0.0f, pos_X = 0.0f;
+    float last_pos_Y = 0.0f, pos_Y = 0.0f;
+    float last_pos_Z = 0.0f, pos_Z = 0.0f;
+
+    for(uint8_t i=0; i<20; ++i){
+        cubes[i] = ll_CubeNamespace::LL_Cube();
+        while(last_pos_X == pos_X){
+            pos_X = i + return_random(i);}
+        while(last_pos_Y == pos_Y){
+            pos_Y = i + return_random(i);}
+        while(last_pos_Z == pos_Z){
+            pos_Z = i + return_random(i);}
+        std :: cout << "Px= " << pos_X << std:: endl;
+        cubes[i].SetPosition(pos_X, pos_Y, pos_Z); 
+        last_pos_X = pos_X;
+        last_pos_Y = pos_Y;
+        last_pos_Z = pos_Z;
+        float angle = rand()%180;
+
+        cubes[i].SetRotation(float(rand()%180), 1.0f, 1.0f, 1.0f);
+        cubes[i].CreateCube();
+    }
+}
+float return_random(uint8_t number){
+    int random = rand()%2+1;
+    if(random == 1){
+        return number + 1;   
+    }else if(random == 2){
+        return 1-number;
+    }
+    return number - 1;
 }
 
 
