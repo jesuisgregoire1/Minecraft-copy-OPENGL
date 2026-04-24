@@ -13,17 +13,18 @@ struct FlashLight {
 };
 
 struct Light {
-    vec3 position;
-    // vec3 direction;   USED ONLY FOR DIRECTIONAL LIGHTING
+    // vec3 position;
+    vec3 direction;   
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
 
-    float constant;
-    float linear;
-    float quadratic;
+    // float constant;
+    // float linear;
+    // float quadratic;
 };
-uniform FlashLight flashLight;
+
+// uniform FlashLight flashLight;
 uniform Light light;
 uniform Material material;
 out vec4 FragColor;
@@ -41,75 +42,76 @@ float specularStrenght = 0.5;
 
 void main()
 {
-    //FLASHLIGHT INCOMINGGGGGGGG
+    //FLASHLIGHT INCOMING
     vec3 lightDir = normalize(flashLight.position - FragPos);
     float theta = dot(lightDir, normalize(-flashLight.direction));
     // if(theta > flashLight.cutOff) 
     // {       
-        float epsilon   = flashLight.cutOff - flashLight.outerCutOff;
-        float intensity = clamp((theta - flashLight.outerCutOff) / epsilon, 0.0, 1.0);  
-        //USED FOR POINT LIGHT
-        float distance = length(flashLight.position - FragPos);
-        float attentuation = 1.0/(light.constant + light.linear * distance + 
-                                    light.quadratic * (distance * distance));
-        // ambient
-        // float ambientStrength = 0.1;
-        // vec3 ambient = ambientStrength * lightColor;
-        // vec3 ambient = light.ambient * material.ambient;
-        vec3 ambient = light.ambient * vec3(texture(material.diffuse, TextureCoord));
-        
-        // diffuse 
-        vec3 norm = normalize(Normal);
-        // vec3 lightDir = normalize(flashLight.position - FragPos);
-        // vec3 lightDir = normalize(-light.direction);     USED ONLY FOR DIRECTIONAL LIGHTING
-        float diff = max(dot(norm, lightDir), 0.0);
-        vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TextureCoord));
-        
-        //specular
-        vec3 viewDir = normalize(viewPos - FragPos);
-        vec3 reflectDir = reflect(-lightDir, norm);
-        float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-        // vec3 specular = specularStrenght * spec * lightColor; 
-        vec3 specular = light.specular * spec * vec3(texture(material.specular, TextureCoord));
-        ambient     *= attentuation;
-        diffuse     *= attentuation;
-        specular    *= attentuation; 
-        diffuse     *= intensity;
-        specular    *= intensity;
-        vec3 result = ambient + diffuse + specular;
-        FragColor = vec4(result, 1.0);
+    float epsilon   = flashLight.cutOff - flashLight.outerCutOff;
+    float intensity = clamp((theta - flashLight.outerCutOff) / epsilon, 0.0, 1.0);  
+    //USED FOR POINT LIGHT
+    float distance = length(flashLight.position - FragPos);
+    float attentuation = 1.0/(light.constant + light.linear * distance + 
+                                light.quadratic * (distance * distance));
+    // ambient
+    // float ambientStrength = 0.1;
+    // vec3 ambient = ambientStrength * lightColor;
+    // vec3 ambient = light.ambient * material.ambient;
+    vec3 ambient = light.ambient * vec3(texture(material.diffuse, TextureCoord));
+    
+    // diffuse 
+    vec3 norm = normalize(Normal);
+    // vec3 lightDir = normalize(flashLight.position - FragPos);
+    // vec3 lightDir = normalize(-light.direction);     USED ONLY FOR DIRECTIONAL LIGHTING
+    float diff = max(dot(norm, lightDir), 0.0);
+    vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TextureCoord));
+    
+    //specular
+    vec3 viewDir = normalize(viewPos - FragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    // vec3 specular = specularStrenght * spec * lightColor; 
+    vec3 specular = light.specular * spec * vec3(texture(material.specular, TextureCoord));
+    ambient     *= attentuation;
+    diffuse     *= attentuation;
+    specular    *= attentuation; 
+    diffuse     *= intensity;
+    specular    *= intensity;
+    vec3 result = ambient + diffuse + specular;
+    FragColor = vec4(result, 1.0);
     // }
+    //COMMENT JUST FOR NOW BELOWWWWW
     // else
-    if(theta < flashLight.outerCutOff) 
-    {
-        //USED FOR POINT LIGHT
-        float distance = length(light.position - FragPos);
-        float attentuation = 1.0/(light.constant + light.linear * distance + 
-                                    light.quadratic * (distance * distance));
-        // ambient
-        // float ambientStrength = 0.1;
-        // vec3 ambient = ambientStrength * lightColor;
-        // vec3 ambient = light.ambient * material.ambient;
-        vec3 ambient = light.ambient * vec3(texture(material.diffuse, TextureCoord));
+    // if(theta < flashLight.outerCutOff) 
+    // {
+    //     //USED FOR POINT LIGHT
+    //     float distance = length(light.position - FragPos);
+    //     float attentuation = 1.0/(light.constant + light.linear * distance + 
+    //                                 light.quadratic * (distance * distance));
+    //     // ambient
+    //     // float ambientStrength = 0.1;
+    //     // vec3 ambient = ambientStrength * lightColor;
+    //     // vec3 ambient = light.ambient * material.ambient;
+    //     vec3 ambient = light.ambient * vec3(texture(material.diffuse, TextureCoord));
         
-        // diffuse 
-        vec3 norm = normalize(Normal);
-        vec3 lightDir = normalize(light.position - FragPos);
-        // vec3 lightDir = normalize(-light.direction);     USED ONLY FOR DIRECTIONAL LIGHTING
-        float diff = max(dot(norm, lightDir), 0.0);
-        vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TextureCoord));
+    //     // diffuse 
+    //     vec3 norm = normalize(Normal);
+    //     vec3 lightDir = normalize(light.position - FragPos);
+    //     // vec3 lightDir = normalize(-light.direction);     USED ONLY FOR DIRECTIONAL LIGHTING
+    //     float diff = max(dot(norm, lightDir), 0.0);
+    //     vec3 diffuse = light.diffuse * diff * vec3(texture(material.diffuse, TextureCoord));
         
-        //specular
-        vec3 viewDir = normalize(viewPos - FragPos);
-        vec3 reflectDir = reflect(-lightDir, norm);
-        float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-        // vec3 specular = specularStrenght * spec * lightColor; 
-        vec3 specular = light.specular * spec * vec3(texture(material.specular, TextureCoord));
-        ambient     *= attentuation;
-        diffuse     *= attentuation;
-        specular    *= attentuation; 
-        vec3 result = ambient + diffuse + specular;
-        FragColor = vec4(result, 1.0);
-        // FragColor = texture(ourTexture, TextureCoord);
-    }
+    //     //specular
+    //     vec3 viewDir = normalize(viewPos - FragPos);
+    //     vec3 reflectDir = reflect(-lightDir, norm);
+    //     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
+    //     // vec3 specular = specularStrenght * spec * lightColor; 
+    //     vec3 specular = light.specular * spec * vec3(texture(material.specular, TextureCoord));
+    //     ambient     *= attentuation;
+    //     diffuse     *= attentuation;
+    //     specular    *= attentuation; 
+    //     vec3 result = ambient + diffuse + specular;
+    //     FragColor = vec4(result, 1.0);
+    //     // FragColor = texture(ourTexture, TextureCoord);
+    // }
 } 

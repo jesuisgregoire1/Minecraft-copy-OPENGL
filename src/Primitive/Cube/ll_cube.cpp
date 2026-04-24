@@ -93,15 +93,36 @@ void ll_CubeNamespace::LL_Cube::ModelViewProjection(CameraNamespace::Camera came
     
     glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f); 
     glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); 
-
-    int light_ambient = glGetUniformLocation(shader.ID, "light.ambient");
+    
+    int light_ambient = glGetUniformLocation(shader.ID, "dirLight.ambient");
     glUniform3fv(light_ambient, 1, glm::value_ptr(ambientColor));
     
-    int light_diffuse = glGetUniformLocation(shader.ID, "light.diffuse");
+    int light_diffuse = glGetUniformLocation(shader.ID, "dirLight.diffuse");
     glUniform3fv(light_diffuse, 1, glm::value_ptr(diffuseColor));
     
-    int light_specular = glGetUniformLocation(shader.ID, "light.specular");
+    int light_specular = glGetUniformLocation(shader.ID, "dirLight.specular");
     glUniform3fv(light_specular, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+
+    light_ambient = glGetUniformLocation(shader.ID, "spotLight.ambient");
+    glUniform3fv(light_ambient, 1, glm::value_ptr(ambientColor));
+    
+    light_diffuse = glGetUniformLocation(shader.ID, "spotLight.diffuse");
+    glUniform3fv(light_diffuse, 1, glm::value_ptr(diffuseColor));
+    
+    light_specular = glGetUniformLocation(shader.ID, "spotLight.specular");
+    glUniform3fv(light_specular, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+
+    for(uint8_t i=0; i<4; ++i){
+        std::string temporary_string="pointLights[" + std::to_string(i) + "].ambient";
+        int light_ambient = glGetUniformLocation(shader.ID, temporary_string.c_str());
+        glUniform3fv(light_ambient, 1, glm::value_ptr(glm::vec3(0.05f, 0.05f, 0.05f)));
+        temporary_string="pointLights[" + std::to_string(i) + "].diffuse";
+        int light_diffuse = glGetUniformLocation(shader.ID, temporary_string.c_str());
+        glUniform3fv(light_diffuse, 1, glm::value_ptr(glm::vec3(0.8f, 0.8f, 0.8f)));
+        temporary_string="pointLights[" + std::to_string(i) + "].specular";
+        int light_specular = glGetUniformLocation(shader.ID, temporary_string.c_str());
+        glUniform3fv(light_specular, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
+    }
 
     // int lightColor = glGetUniformLocation(shader.ID, "lightColor");
     // glUniform3fv(lightColor, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));
