@@ -1,4 +1,5 @@
 #include <iostream>
+#include <filesystem>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -17,7 +18,13 @@
 #include "Debug/WorldCoordSystem.hpp"
 #include "Primitive/Triangle/test_triangle.hpp" //DELETE IT AFTER
 #include "Primitive/Cube/ll_cube.hpp"
+#include "Model/model.hpp"
 
+// 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+// 
 #define LIGHTSCENE 1
 #define TESTING 0
 #define DEBUG
@@ -59,64 +66,68 @@ int main(){
     CameraNamespace::Camera camera = CameraNamespace::Camera();
     glfwSetWindowUserPointer(window.getWindow(), &camera);
     glfwSetCursorPosCallback(window.getWindow(), camera.MouseCallback);  
-    Texture::TextureGeneration t_wood = Texture::TextureGeneration();
-    t_wood.GenerateTexture("../resources/container2.png");
-#ifdef DEBUG
-    std :: cout << "Texture height : " << t_wood.GetTextureHeigth() << std :: endl;
-    std :: cout << "Texture width  : " << t_wood.GetTextureWidth() << std :: endl;
-#endif
-    Texture::TextureGeneration t_wood_specular = Texture::TextureGeneration();
-    t_wood_specular.GenerateTexture("../resources/container2_specular.png");
-#ifdef DEBUG
-    std :: cout << "Texture height : " << t_wood_specular.GetTextureHeigth() << std :: endl;
-    std :: cout << "Texture width  : " << t_wood_specular.GetTextureWidth() << std :: endl;
-#endif
+//     Texture::TextureGeneration t_wood = Texture::TextureGeneration();
+//     t_wood.GenerateTexture("../resources/container2.png");
+// #ifdef DEBUG
+//     std :: cout << "Texture height : " << t_wood.GetTextureHeigth() << std :: endl;
+//     std :: cout << "Texture width  : " << t_wood.GetTextureWidth() << std :: endl;
+// #endif
+//     Texture::TextureGeneration t_wood_specular = Texture::TextureGeneration();
+//     t_wood_specular.GenerateTexture("../resources/container2_specular.png");
+// #ifdef DEBUG
+//     std :: cout << "Texture height : " << t_wood_specular.GetTextureHeigth() << std :: endl;
+//     std :: cout << "Texture width  : " << t_wood_specular.GetTextureWidth() << std :: endl;
+// #endif
 
 #if TESTING == 0   
-    ll_CubeNamespace::LL_Cube cube = ll_CubeNamespace::LL_Cube();
-    ll_CubeNamespace::LL_Cube lightSource[4];
-    ll_CubeNamespace::LL_Cube cubes[20];
-    multiple_cubes(cubes);
-    cube.SetPosition(0.0f, 2.5f, -2.0f);
-    cube.SetRotation(0.0f, 0.0f, 1.0f, 0.0f);
-    cube.CreateCube();
-    ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", 
-                                                             "/Users/jesuisgregoire/minecraft_copy/shaders/m_l_test_shader.fs");
-    for(uint8_t i=0; i<4; ++i){
-        lightSource[i].CreateCube();
-    }
+    // ll_CubeNamespace::LL_Cube cube = ll_CubeNamespace::LL_Cube();
+    // ll_CubeNamespace::LL_Cube lightSource[4];
+    // ll_CubeNamespace::LL_Cube cubes[20];
+    // multiple_cubes(cubes);
+    // cube.SetPosition(0.0f, 2.5f, -2.0f);
+    // cube.SetRotation(0.0f, 0.0f, 1.0f, 0.0f);
+    // cube.CreateCube();
+    ShaderNamespace::Shader m_shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/m_model_shader.vs", 
+                                                             "/Users/jesuisgregoire/minecraft_copy/shaders/m_model_shader.fs");
+    ModelNamespace::Model ourModel("/Users/jesuisgregoire/minecraft_copy/resources/backpack/backpack.obj");
+
+    // ShaderNamespace::Shader shader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", 
+    //                                                          "/Users/jesuisgregoire/minecraft_copy/shaders/m_l_test_shader.fs");
+    // for(uint8_t i=0; i<4; ++i){
+    //     lightSource[i].CreateCube();
+    // }
     
-    lightSource[0].SetPosition(5.0f, 0.0f, 0.0f);
-    lightSource[1].SetPosition(0.0f, 5.0f, 0.0f);
-    lightSource[2].SetPosition(0.0f, 0.0f, 5.0f);
-    lightSource[3].SetPosition(2.0f, 3.0f, -6.0f);
-    ShaderNamespace::Shader lightSourceShader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", 
-                                                                        "/Users/jesuisgregoire/minecraft_copy/shaders/light_source.fs");
-    shader.use();
+    // lightSource[0].SetPosition(5.0f, 0.0f, 0.0f);
+    // lightSource[1].SetPosition(0.0f, 5.0f, 0.0f);
+    // lightSource[2].SetPosition(0.0f, 0.0f, 5.0f);
+    // lightSource[3].SetPosition(2.0f, 3.0f, -6.0f);
+    // ShaderNamespace::Shader lightSourceShader = ShaderNamespace::Shader("/Users/jesuisgregoire/minecraft_copy/shaders/l_test_shader.vs", 
+    //                                                                     "/Users/jesuisgregoire/minecraft_copy/shaders/light_source.fs");
+    // shader.use();
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // USED WHEN WE WANT THE LIGHT POSITION
      
-    for(uint8_t i=0; i<4; ++i){
-        std::string temporary_string="pointLights[" + std::to_string(i) + "].position";
-        int lightPos = glGetUniformLocation(shader.ID, temporary_string.c_str());
-        glUniform3fv(lightPos, 1, glm::value_ptr(lightSource[i].points));    
-    }
+    // for(uint8_t i=0; i<4; ++i){
+    //     std::string temporary_string="pointLights[" + std::to_string(i) + "].position";
+    //     int lightPos = glGetUniformLocation(shader.ID, temporary_string.c_str());
+    //     glUniform3fv(lightPos, 1, glm::value_ptr(lightSource[i].points));    
+    // }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////// 
     // POINT LIGHT STAFF
-    for(uint8_t i=0; i<4; ++i){
-        std::string temporary_string="pointLights[" + std::to_string(i) + "].constant";
-        int light_constant = glGetUniformLocation(shader.ID, temporary_string.c_str());
-        glUniform1f(light_constant, 1.0f);
-        temporary_string="pointLights[" + std::to_string(i) + "].linear";
-        int light_linear = glGetUniformLocation(shader.ID, temporary_string.c_str());
-        glUniform1f(light_linear, 0.09f);
-        temporary_string="pointLights[" + std::to_string(i) + "].quadratic";
-        int light_quadratic = glGetUniformLocation(shader.ID, temporary_string.c_str());
-        glUniform1f(light_quadratic, 0.00032f);
-    }
+    // for(uint8_t i=0; i<4; ++i){
+    //     std::string temporary_string="pointLights[" + std::to_string(i) + "].constant";
+    //     int light_constant = glGetUniformLocation(shader.ID, temporary_string.c_str());
+    //     glUniform1f(light_constant, 1.0f);
+    //     temporary_string="pointLights[" + std::to_string(i) + "].linear";
+    //     int light_linear = glGetUniformLocation(shader.ID, temporary_string.c_str());
+    //     glUniform1f(light_linear, 0.09f);
+    //     temporary_string="pointLights[" + std::to_string(i) + "].quadratic";
+    //     int light_quadratic = glGetUniformLocation(shader.ID, temporary_string.c_str());
+    //     glUniform1f(light_quadratic, 0.00032f);
+    // }
     // int light_constant = glGetUniformLocation(shader.ID, "light.constant");
     // glUniform1f(light_constant, 1.0f);
     // int light_linear = glGetUniformLocation(shader.ID, "light.linear");
@@ -126,15 +137,15 @@ int main(){
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // FLASHLIGHT
-    int spotLgihtCutOff = glGetUniformLocation(shader.ID, "spotLight.cutOff");
-    glUniform1f(spotLgihtCutOff, glm::cos(glm::radians(12.5f)));
-    int spotLgihtouterCutOff = glGetUniformLocation(shader.ID, "spotLight.outerCutOff");
-    glUniform1f(spotLgihtouterCutOff, glm::cos(glm::radians(17.5f)));
+    // int spotLgihtCutOff = glGetUniformLocation(shader.ID, "spotLight.cutOff");
+    // glUniform1f(spotLgihtCutOff, glm::cos(glm::radians(12.5f)));
+    // int spotLgihtouterCutOff = glGetUniformLocation(shader.ID, "spotLight.outerCutOff");
+    // glUniform1f(spotLgihtouterCutOff, glm::cos(glm::radians(17.5f)));
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // ONLY USED FOR DIRECTIONAL LIGHTING
-    int lightDir = glGetUniformLocation(shader.ID, "dirLight.direction");
-    glUniform3fv(lightDir, 1, glm::value_ptr(glm::vec3(-0.2f, -1.0f, -0.3f)));
+    // int lightDir = glGetUniformLocation(shader.ID, "dirLight.direction");
+    // glUniform3fv(lightDir, 1, glm::value_ptr(glm::vec3(-0.2f, -1.0f, -0.3f)));
     ////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -148,7 +159,7 @@ int main(){
     while(!window.checkWindow()){
         Utils::getDeltatime(&dt);
         closeWindowWithESCButton(window.getWindow());
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(0.2f, 0.5f, 0.7f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         inputHandler.ProcessInput(window.getWindow(), camera, dt.deltaTime);
 #if TESTING == 1
@@ -157,36 +168,52 @@ int main(){
         quad.GenerateCrossProduct(camera, shader);
         quad.SecondDraw();
 #elif TESTING == 0
-        glActiveTexture(GL_TEXTURE0);
-        t_wood.BindTexture();
-        glActiveTexture(GL_TEXTURE1);
-        t_wood_specular.BindTexture();  
+        // glActiveTexture(GL_TEXTURE0);
+        // t_wood.BindTexture();
+        // glActiveTexture(GL_TEXTURE1);
+        // t_wood_specular.BindTexture();  
         
-        for(uint8_t i=0 ; i< 20; ++i){
-            cubes[i].ModelViewProjection(camera, shader);
-            cubes[i].Draw();
-        }
-        // cube.ModelViewProjection(camera, shader);
-        // cube.Draw();
-        shader.use();
-        // FLASHLIGHT
-        int spotLightPos = glGetUniformLocation(shader.ID, "spotLight.position");
-        glUniform3fv(spotLightPos, 1, glm::value_ptr(camera.GetcameraPos()));
-        int spotLightDir = glGetUniformLocation(shader.ID, "spotLight.direction");
-        glUniform3fv(spotLightDir, 1, glm::value_ptr(camera.GetCameraFront()));
+        // for(uint8_t i=0 ; i< 20; ++i){
+        //     cubes[i].ModelViewProjection(camera, shader);
+        //     cubes[i].Draw();
+        // }
+        // // cube.ModelViewProjection(camera, shader);
+        // // cube.Draw();
+        // shader.use();
+        // // FLASHLIGHT
+        // int spotLightPos = glGetUniformLocation(shader.ID, "spotLight.position");
+        // glUniform3fv(spotLightPos, 1, glm::value_ptr(camera.GetcameraPos()));
+        // int spotLightDir = glGetUniformLocation(shader.ID, "spotLight.direction");
+        // glUniform3fv(spotLightDir, 1, glm::value_ptr(camera.GetCameraFront()));
         
-        // int lightPos = glGetUniformLocation(shader.ID, "light.position");
-        // glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
-        int viewPos = glGetUniformLocation(shader.ID, "viewPos");
-        glUniform3fv(viewPos, 1, glm::value_ptr(camera.GetcameraPos()));
+        // // int lightPos = glGetUniformLocation(shader.ID, "light.position");
+        // // glUniform3fv(lightPos, 1, glm::value_ptr(lightSource.points));
+        // int viewPos = glGetUniformLocation(shader.ID, "viewPos");
+        // glUniform3fv(viewPos, 1, glm::value_ptr(camera.GetcameraPos()));
         
-        lightSourceShader.use();
-        // for(u)
-        for(uint8_t i=0; i<4; ++i){
-            lightSource[i].ModelViewProjection(camera, lightSourceShader, glm::vec3(0.5f, 0.5f, 0.5f));
-            lightSource[i].Draw();
-        }
+        // lightSourceShader.use();
+        // // for(u)
+        // for(uint8_t i=0; i<4; ++i){
+        //     lightSource[i].ModelViewProjection(camera, lightSourceShader, glm::vec3(0.5f, 0.5f, 0.5f));
+        //     lightSource[i].Draw();
+        // }
+        m_shader.use();
+        glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+        glm::mat4 view = camera.ModifyViewMatrix();
+        int viewLoc = glGetUniformLocation(m_shader.ID, "view");
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
+        int projectionLoc = glGetUniformLocation(m_shader.ID, "projection");
+        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+        // render the loaded model
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 2.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        int modelLoc = glGetUniformLocation(m_shader.ID, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        std :: cout << "Start drawing" << std::endl;
+        ourModel.Draw(m_shader);
 #endif
         window.swapBuffers();       
         window.pollEvents();

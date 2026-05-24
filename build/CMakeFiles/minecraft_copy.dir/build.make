@@ -296,6 +296,34 @@ CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.cpp -o CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.s
 
+CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
+CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Model/model.cpp
+CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Model/model.cpp
+
+CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jesuisgregoire/minecraft_copy/src/Model/model.cpp > CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.i
+
+CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jesuisgregoire/minecraft_copy/src/Model/model.cpp -o CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.s
+
+CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o: CMakeFiles/minecraft_copy.dir/flags.make
+CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o: /Users/jesuisgregoire/minecraft_copy/src/Mesh/mesh.cpp
+CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o: CMakeFiles/minecraft_copy.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o -MF CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o.d -o CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o -c /Users/jesuisgregoire/minecraft_copy/src/Mesh/mesh.cpp
+
+CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/jesuisgregoire/minecraft_copy/src/Mesh/mesh.cpp > CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.i
+
+CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/jesuisgregoire/minecraft_copy/src/Mesh/mesh.cpp -o CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.s
+
 # Object files for target minecraft_copy
 minecraft_copy_OBJECTS = \
 "CMakeFiles/minecraft_copy.dir/src/main.cpp.o" \
@@ -313,7 +341,9 @@ minecraft_copy_OBJECTS = \
 "CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o" \
 "CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o" \
-"CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o"
+"CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o" \
+"CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o" \
+"CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o"
 
 # External object files for target minecraft_copy
 minecraft_copy_EXTERNAL_OBJECTS =
@@ -334,10 +364,13 @@ minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Debug/WorldCoordSystem.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/stb_lib.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/external_ref/glad.c.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Primitive/Cube/ll_cube.cpp.o
+minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o
+minecraft_copy: CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o
 minecraft_copy: CMakeFiles/minecraft_copy.dir/build.make
 minecraft_copy: /Users/jesuisgregoire/minecraft_copy/lib/libglfw3.a
+minecraft_copy: /Users/jesuisgregoire/minecraft_copy/lib/libassimp.6.dylib
 minecraft_copy: CMakeFiles/minecraft_copy.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable minecraft_copy"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/jesuisgregoire/minecraft_copy/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable minecraft_copy"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minecraft_copy.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

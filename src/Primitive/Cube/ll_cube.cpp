@@ -118,7 +118,7 @@ void ll_CubeNamespace::LL_Cube::ModelViewProjection(CameraNamespace::Camera came
         glUniform3fv(light_ambient, 1, glm::value_ptr(glm::vec3(0.05f, 0.05f, 0.05f)));
         temporary_string="pointLights[" + std::to_string(i) + "].diffuse";
         int light_diffuse = glGetUniformLocation(shader.ID, temporary_string.c_str());
-        glUniform3fv(light_diffuse, 1, glm::value_ptr(glm::vec3(0.8f, 0.8f, 0.8f)));
+        glUniform3fv(light_diffuse, 1, glm::value_ptr(glm::vec3(0.1f, 1.0f, 1.0f)));
         temporary_string="pointLights[" + std::to_string(i) + "].specular";
         int light_specular = glGetUniformLocation(shader.ID, temporary_string.c_str());
         glUniform3fv(light_specular, 1, glm::value_ptr(glm::vec3(1.0f, 1.0f, 1.0f)));

@@ -791,6 +791,25 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/stack.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/print \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/unistd.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/filesystem \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_status.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perms.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/file_clock.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/operations.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/space_info.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Users/jesuisgregoire/minecraft_copy/include/glad/glad.h \
   /Users/jesuisgregoire/minecraft_copy/include/KHR/khrplatform.h \
   /Users/jesuisgregoire/minecraft_copy/include/GLFW/glfw3.h \
@@ -1107,25 +1126,6 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
   /Users/jesuisgregoire/minecraft_copy/src/Utils/utils.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Shaders/shaders.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/filesystem \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_status.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perms.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/file_clock.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/operations.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/space_info.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/triangle.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/cube.hpp \
@@ -1148,4 +1148,39 @@ CMakeFiles/minecraft_copy.dir/src/main.cpp.o: \
   /Users/jesuisgregoire/minecraft_copy/src/Debug/../Camera/camera.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Debug/../Shaders/shaders.hpp \
   /Users/jesuisgregoire/minecraft_copy/src/Primitive/Triangle/test_triangle.hpp \
-  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.hpp
+  /Users/jesuisgregoire/minecraft_copy/src/Primitive/Cube/ll_cube.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Model/model.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Model/../Shaders/shaders.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Model/../Mesh/mesh.hpp \
+  /Users/jesuisgregoire/minecraft_copy/src/Model/../Mesh/../Shaders/shaders.hpp \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/Importer.hpp \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/types.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/defs.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/config.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/vector2.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/vector3.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/color4.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/matrix3x3.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/matrix4x4.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/quaternion.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/vector2.inl \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/vector3.inl \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/color4.inl \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/matrix3x3.inl \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/matrix4x4.inl \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/MathFunctions.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/quaternion.inl \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/scene.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/texture.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/./Compiler/pushpack1.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/./Compiler/poppack1.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/mesh.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/aabb.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/unordered_set \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/light.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/camera.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/material.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/material.inl \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/anim.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/metadata.h \
+  /Users/jesuisgregoire/minecraft_copy/include/assimp/postprocess.h

@@ -249,6 +249,54 @@ src/InputHandler/input_handler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/InputHandler/input_handler.cpp.s
 .PHONY : src/InputHandler/input_handler.cpp.s
 
+src/Mesh/mesh.o: src/Mesh/mesh.cpp.o
+.PHONY : src/Mesh/mesh.o
+
+# target to build an object file
+src/Mesh/mesh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.o
+.PHONY : src/Mesh/mesh.cpp.o
+
+src/Mesh/mesh.i: src/Mesh/mesh.cpp.i
+.PHONY : src/Mesh/mesh.i
+
+# target to preprocess a source file
+src/Mesh/mesh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.i
+.PHONY : src/Mesh/mesh.cpp.i
+
+src/Mesh/mesh.s: src/Mesh/mesh.cpp.s
+.PHONY : src/Mesh/mesh.s
+
+# target to generate assembly for a file
+src/Mesh/mesh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Mesh/mesh.cpp.s
+.PHONY : src/Mesh/mesh.cpp.s
+
+src/Model/model.o: src/Model/model.cpp.o
+.PHONY : src/Model/model.o
+
+# target to build an object file
+src/Model/model.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.o
+.PHONY : src/Model/model.cpp.o
+
+src/Model/model.i: src/Model/model.cpp.i
+.PHONY : src/Model/model.i
+
+# target to preprocess a source file
+src/Model/model.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.i
+.PHONY : src/Model/model.cpp.i
+
+src/Model/model.s: src/Model/model.cpp.s
+.PHONY : src/Model/model.s
+
+# target to generate assembly for a file
+src/Model/model.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/minecraft_copy.dir/build.make CMakeFiles/minecraft_copy.dir/src/Model/model.cpp.s
+.PHONY : src/Model/model.cpp.s
+
 src/Primitive/Cube/cube.o: src/Primitive/Cube/cube.cpp.o
 .PHONY : src/Primitive/Cube/cube.o
 
@@ -537,6 +585,12 @@ help:
 	@echo "... src/InputHandler/input_handler.o"
 	@echo "... src/InputHandler/input_handler.i"
 	@echo "... src/InputHandler/input_handler.s"
+	@echo "... src/Mesh/mesh.o"
+	@echo "... src/Mesh/mesh.i"
+	@echo "... src/Mesh/mesh.s"
+	@echo "... src/Model/model.o"
+	@echo "... src/Model/model.i"
+	@echo "... src/Model/model.s"
 	@echo "... src/Primitive/Cube/cube.o"
 	@echo "... src/Primitive/Cube/cube.i"
 	@echo "... src/Primitive/Cube/cube.s"

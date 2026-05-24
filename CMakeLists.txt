@@ -30,10 +30,13 @@ add_executable(${PROJECT_NAME}
     src/stb_lib.cpp
     external_ref/glad.c
     src/Primitive/Cube/ll_cube.cpp
+    src/Model/model.cpp
+    src/Mesh/mesh.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
-      ${CMAKE_SOURCE_DIR}/lib/libglfw3.a
+    ${CMAKE_SOURCE_DIR}/lib/libglfw3.a
+    ${CMAKE_SOURCE_DIR}/lib/libassimp.6.dylib
     "-framework Cocoa"
     "-framework OpenGL"
     "-framework IOKit"
